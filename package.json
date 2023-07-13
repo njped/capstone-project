@@ -1,15 +1,12 @@
 {
-  "name": "capstone",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "dependencies": {
-    "dotenv": "^16.3.1"
+    "init": "^0.1.2"
+  },
+  "scripts": {
+    "build": "cd server && npm i && cd ../client && npm i && npm run build",
+    "start": "node server/server.js"
+  },
+  "engines": {
+    "node": "a20.3.0"
   }
 }
