@@ -164,9 +164,10 @@ export const RegField = () => {
 
                 <label htmlFor="phoneNumberInput">Phone Number: </label>
                 <input
-                    type="text" 
+                    type="tel" 
                     name="phoneNumberInput" 
                     id="phoneNumberInput"
+                    pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
                     value={phone}
                     onChange={(Event) => setPhone(Event.target.value)}
                 />
