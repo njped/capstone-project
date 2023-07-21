@@ -5,13 +5,14 @@ import { useNavigate } from "react-router-dom";
 export const LoginField = () => {
     const [ username, setUsername ] = useState('')
     const [ password, setPassword ] = useState('')
+    
     const navigateTo = useNavigate();
 
     let studentSavedUsername = 'RegularUser';
     let studentSavedPassword = 'PasswordReg';
     
     let adminSavedUsername = 'AdminUser';
-    let adminSavedPassword = 'PasswordAdmin'
+    let adminSavedPassword = 'PasswordAdmin';
 
 
     function handleSubmit(Event) {
