@@ -13,9 +13,9 @@ export const NavBar = () => {
                     <br />
                     <Link to='/courses'>Courses</Link>
                     <br />
-                    <Link to='/userinfo'>User Information</Link>
+                    <Link to='/user-info'>User Information</Link>
                     <br />
-                    <Link to='/userreg'>User Registration</Link>
+                    <Link to='/use-reg'>User Registration</Link>
                 </div>
             </nav>
         </>
