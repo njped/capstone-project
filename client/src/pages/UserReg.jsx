@@ -1,12 +1,14 @@
 import React from "react";
-import { NavBar } from './components/NavBar.jsx'
+
+import { RegField } from "./components/RegField.jsx";
 
 export function UserReg() {
 
     return(
         <>
-            <NavBar/>
             <h1>User Registration</h1>
+            <br />
+            <RegField/>
         </>
     );
 };
