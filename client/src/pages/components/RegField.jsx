@@ -22,7 +22,8 @@ export const RegField = () => {
     
     const navigateTo = useNavigate();
 
-    let userAccounts = JSON.parse(localStorage.getItem('Existing-Accounts'));
+    let storageCondition = localStorage.getItem('Existing-Accounts') === null;
+    let userAccounts = storageCondition? [] : JSON.parse(localStorage.getItem('Existing-Accounts'));
 
     function resetForm() {
         console.log('--Form Reset--');
@@ -50,6 +51,8 @@ export const RegField = () => {
     };
     function handleSubmit(Event) {
         Event.preventDefault()
+
+        localStorage.setItem('Existing-Accounts', JSON.stringify())
 
         function searchUserNames(username) {
             return userAccounts.some(element => {
