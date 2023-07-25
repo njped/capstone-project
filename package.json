@@ -1,6 +1,13 @@
 {
   "dependencies": {
-    "init": "^0.1.2"
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "init": "^0.1.2",
+    "mongoose": "^7.4.1",
+    "morgan": "^1.10.0",
+    "passport": "^0.6.0",
+    "path": "^0.12.7",
+    "winston": "^3.10.0"
   },
   "scripts": {
     "build": "cd server && npm i && cd ../client && npm i && npm run build",
