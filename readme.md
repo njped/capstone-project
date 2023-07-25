@@ -1,3 +1,118 @@
+----------------------------------------------------------------------------------------------------
+# Project Contract:
+--Below will list parts of the project and which team member(s) are reaponsable for its completion--
+
+--------------------------------------------FrontEnd------------------------------------------------
+  - Application Pages: Isaac
+
+    - Admin Page ( Incomplete )
+      - Page ( Incomplete )
+        - Created ( Yes )
+        - Styled ( Unfinished )
+        - Layout ( Unfinished )
+      - Implement Navigation Component ( Done )
+      - User Management Component ( Not Started )
+        - Created ( No )
+        - Change user type ( N/A )
+        - Delete user ( N/A )
+        - Manipulate user courses ( N/A )
+        - Populate data from database ( N/A )
+        - Styled ( N/A )
+
+    - Courses Page ( Incomplete )
+      - Page ( Incomplete )
+        - Created ( Yes )
+        - Styled ( Unfinished )
+        - Layout ( Unfinished )
+      - Implement Navigation Component ( Done )
+      - Rendering Courses Component ( Not Started )
+        - Created ( No )
+        - Add course ( N/A )
+        - Logic ( N/A )
+        - Populate data from database ( N/A )
+        - Remove course ( N/A )
+        - Styled ( N/A )
+
+    - User Pages ( Incomeplete )
+
+      - Login Page ( Incomplete )
+        - Page ( Incomplete )
+          - Created ( Yes )
+          - Styled ( Unfinished )
+          - Layout ( Unfinished )
+        - Implement link to Registration Page ( Done )
+        - Login Component ( Incompleted ) 
+          - Created ( Yes )
+          - Logic ( Done )
+            - Correctly direct admin users ( Done )
+            - Correctly direct student users ( Done )
+            - Check if user exist ( Done )
+            - Check that password and username matches found user ( Done )
+            - If no user is found alert user ( Done )
+          - Pull data from database ( N/A )
+          - Styled ( N/A )
+
+      - Profile Page ( Incomplete )
+        - Page ( Incomplete )
+          - Created ( Yes )
+          - Styled ( Unfinished )
+          - Layout ( Unfinished )
+        - Implement Navigation Component ( Done )
+        - User Information Component ( Not Started )
+          - Created ( No )
+          - Populate data from database ( N/A )
+          - Styled ( N/A )
+
+      - Registration Page ( Incomplete )
+        - Page ( Incomplete )
+          - Created ( Yes )
+          - Styled ( Unfinished )
+          - Layout ( Unfinished )
+        - Registration Component ( Incomplete )
+          - Created ( Yes )
+          - Logic ( Done )
+            - Check that required fields were completed ( Done )
+            - Check that no existing user already uses inputed email ( Done )
+            - Check that no existing user already uses inputed username ( Done )
+            - If inputed username or email is already in uses alert user ( Done )
+          - Pull data from database ( N/A )
+          - Push data to database ( N/A )
+          - Styled ( N/A )
+
+  - Client-side Routes: Isaac
+      - Page navigation ( Incomeplete )
+        - Admin ( Unfinished )
+        - Courses ( Done )
+        - User Pages ( Done )
+          - Login ( Done )
+          - Profile ( Done )
+          - Registration ( Done )
+      - Routing application pages ( Done )
+        - App.jsx ( Done )
+
+  - Frontend Software Tester: Pedro
+    - Bugs Found (1)
+      - Inccorect Spelling for UserReg.jsx link element (Fixed)
+
+  - Object Models: Isaac
+    - Course model ( Not Started )
+    - User model ( Done )
+
+  - User Login / Registration: Isaac
+    - Registration System ( Incomplete )
+    - Login syetem ( Imcomplete )
+
+  - Styling of Frontend: Isaac ( with help from Pedro & Nathan )
+    - Design layout and look ( Unfinished ) 
+    - Responsive design ( unfinished )
+
+---------------------------------------------BackEnd------------------------------------------------
+
+
+----------------------------------------------------------------------------------------------------
+
+
+
 # Create parent npm project
 
 This project will hold the scripts needed for Render to build and run both the server and client apps
