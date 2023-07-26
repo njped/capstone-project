@@ -10,14 +10,14 @@ import { Login } from './pages/Login.jsx'
 import { useState, useEffect } from 'react'
 
 function App() {
-  const [count, setCount] = useState(0);
-  const [data, setData] = useState(null);
+  // const [count, setCount] = useState(0);
+  // const [data, setData] = useState(null);
 
-  useEffect(() => {
-    fetch("/api")
-      .then((res) => res.json())
-      .then((data) => setData(data.message));
-  }, []);
+  // useEffect(() => {
+  //   fetch("/api")
+  //     .then((res) => res.json())
+  //     .then((data) => setData(data.message));
+  // }, []);
   
   return (
     <>
