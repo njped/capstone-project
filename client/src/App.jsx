@@ -9,6 +9,13 @@ import { Admin } from './pages/Admin.jsx'
 import { Login } from './pages/Login.jsx'
 import { useState, useEffect } from 'react'
 
+import { Home } from './pages/Home.jsx'
+import { Courses } from './pages/Courses.jsx'
+import { UserInfo } from './pages/UserInfo.jsx'
+import { UserReg } from './pages/UserReg.jsx'
+import { Admin } from './pages/Admin.jsx'
+import { Login } from './pages/Login.jsx'
+
 function App() {
   const [count, setCount] = useState(0);
   const [data, setData] = useState(null);
