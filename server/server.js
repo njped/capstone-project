@@ -16,7 +16,7 @@ app.use(express.urlencoded({extended: false}))
 
 // For production not development
 
-app.use(express.static('../client/dist'));
+app.use(express.static(path.resolve(__dirname, "../client/dist")));
 
 // app.get('/getActors', db.getActors);
 // app.get('/getRental', db.getRental);
