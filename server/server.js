@@ -12,7 +12,7 @@ const PORT = process.env.PORT || 3001;
 app.use(express.json())
 app.use(express.urlencoded({extended: false}))
 // For production not development
-app.use("/", express.static('../client/src/pages'));
+app.use("/", express.static('../client/dist'));
 
 // app.get('/getActors', db.getActors);
 // app.get('/getRental', db.getRental);
