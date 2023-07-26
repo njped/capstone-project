@@ -23,9 +23,9 @@ app.get("/api", (req, res) => {
   res.json({ message: "Hello from server!" });
 });
 
-// app.get("/*", (_req, res) => {
-//   res.sendFile(path.join(__dirname, "../client", "index.html"));
-// })
+app.get("/*", (_req, res) => {
+  res.sendFile(path.join(__dirname, "../client", "index.html"));
+})
 
 app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);
