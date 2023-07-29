@@ -79,7 +79,7 @@ export const RegField = () => {
                     ClassList: [],
                     Email: email,
                     PhoneNumber: phone,
-                    Adress: address,
+                    Address: address,
                     UserName: username,
                     PassWord: password,
                     isAdmin: false,
