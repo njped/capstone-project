@@ -1,5 +1,5 @@
 const { MongoClient, ServerApiVersion } = require('mongodb');
-const uri = "mongodb+srv://cronch:mimfgitw@courses.1htfmfx.mongodb.net/?retryWrites=true&w=majority";
+const url = "mongodb+srv://cronch:mimfgitw@courses.1htfmfx.mongodb.net/?retryWrites=true&w=majority";
 const express = require("express");
 const path = require("path");
 const passport = require('passport')

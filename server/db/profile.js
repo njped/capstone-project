@@ -16,13 +16,15 @@ const userRegSchema = new mongoose.Schema({
   address: {type: String},
   userName: {type: String, required: true, unique: true},
   password: {type: String, required: true},
+  isAdmin: {type: Boolean, default: false},
+  UUID: {type: String, default: uuidv4()} 
 });
 
 const collectionName = 'user';
 const user = mongoose.model('userCollection', userRegSchema, collectionName);
 
 // Need to use commands for mongo to access and post data into db
-const getUser = (req, res) => {
+const newUser = (req, res) => {
   console.log(`db getUser`);
   pool.query('SELECT actor_id, first_name, last_name FROM actor ORDER BY last_name ASC', (error, results) => {
       if (error) {
