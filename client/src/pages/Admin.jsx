@@ -6,7 +6,7 @@ export function Admin() {
 
     return(
         <>
-            {/* <NavBar/> */}
+            <NavBar/>
             <h1>Admin Page</h1>
             <AdminManage/>
         </>
