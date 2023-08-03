@@ -2,6 +2,15 @@ import React, { useEffect } from "react";
 
 export const CourseManage = () => {
 
+    async function CoursesApi() {
+        const response = fetch("/api/courses");
+        const courses = await response.json();
+        console.log(courses);
+    }
+
+    CoursesApi();
+
+
     function RenderCourseCards() {
         let coursesContainer = document.getElementById('courseContainer');
 
