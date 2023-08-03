@@ -20,9 +20,6 @@ export const AdminManage = () => {
             userFullName.innerText = `${user.FirstName} ${user.LastName}: ${user.UUID}`
             accountInfoCard.appendChild(userFullName);
 
-            // let userUUID = document.createElement('h3');
-            // userUUID
-
             let userEmail = document.createElement('h3');
             userEmail.setAttribute('class', 'userEmail');
             userEmail.innerText = `${user.Email}`;
@@ -63,7 +60,7 @@ export const AdminManage = () => {
             userAccountsContainer.appendChild(accountInfoCard);
             
         }); 
-    }
+    };
     
     useEffect(() => {
         RenderUserCards();
