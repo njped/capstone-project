@@ -18,17 +18,8 @@ app.use(express.urlencoded({extended: false}))
 
 app.use(express.static(path.resolve(__dirname, "../client/dist")));
 
-// app.get('/getActors', dbProfile.getFirstName);
-// app.get('/getActors', dbProfile.getLastName);
-// app.get('/getActors', dbProfile.getEmail);
-// app.get('/getActors', dbProfile.getPhone);
-// app.get('/getActors', dbProfile.getAddress);
-// app.get('/getActors', dbProfile.getUserName);
-// app.get('/getActors', dbProfile.getPassword);
-// app.get('/getActors', dbProfile.getRePassword);
-// app.get('/getRental', db.getRental);
-// app.post('/updateActors', db.updateActor);
-// app.put('/updateActors', db.updateActor);
+// app.get('/getUser', dbProfile.getProfile);
+
 
 app.get("/api", (req, res) => {
   res.json({ message: "Hello from server!" });
