@@ -21,6 +21,7 @@ const userRegSchema = new mongoose.Schema({
 const collectionName = 'user';
 const user = mongoose.model('userCollection', userRegSchema, collectionName);
 
+// Need to use commands for mongo to access and post data into db
 const getUser = (req, res) => {
   console.log(`db getUser`);
   pool.query('SELECT actor_id, first_name, last_name FROM actor ORDER BY last_name ASC', (error, results) => {
