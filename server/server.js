@@ -28,8 +28,10 @@ app.get("/api", (req, res) => {
 });
 
 app.get("/api/courses", (req, res) => {
-  res.json({ message: "Hello from server!" });
+  res.json(getCourses());
 });
+
+app.get("/api/users/*")
 
 app.get("/*", (_req, res) => {
   res.sendFile(path.join(__dirname, "../client", "index.html"));
@@ -48,5 +50,7 @@ const client = new MongoClient(uri, {
 });
 
 async function getCourses(){
-  await client.db("courses").collection("courses")
+  let cursor = client.db("courses").collection("courses").find()
+  let array = await cursor.toArray()
+  return JSON.stringify(array)
 }
