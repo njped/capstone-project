@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+// need to change the DB_URL to our actual database url
 const dbURL = process.env.DB_URL || 'mongodb://localhost/mtech2023'
 mongoose.connect(dbURL); // "userManagement" is the db name
 const db = mongoose.connection;
@@ -8,14 +9,13 @@ db.once('open', function () {
 });
 
 const userRegSchema = new mongoose.Schema({
-  firstName: {type: String, required: true},
-  lastName: {type: String, required: true},
-  email: {type: String, required: true},
-  phone: {type: String, required: true},
-  address: {type: String, required: true},
-  userName: {type: String, required: true},
+  firstName: {type: String},
+  lastName: {type: String},
+  email: {type: String, required: true, unique: true},
+  phone: {type: String},
+  address: {type: String},
+  userName: {type: String, required: true, unique: true},
   password: {type: String, required: true},
-  reEnteredPassword: {type: String, required: true},
 });
 
 const collectionName = 'user';
@@ -31,3 +31,19 @@ const getUser = (req, res) => {
       res.status(200).json(results.rows);
   })
 };
+
+// Some help with mongo commands
+// app.post('/newUser', async (req, res) => {
+//   console.log(`POST /newUser: ${JSON.stringify(req.body)}`);
+//   const newUser = new user();
+//   newUser.name = req.body.name;
+//   newUser.role = req.body.role;
+//   try {
+//       let aUser = await newUser.save();
+//       console.log(`new user save: ${aUser}`);
+//       res.send(`done ${aUser}`);
+//   } catch (err) {
+//       console.error(err);
+//       res.send(`error: ${err}`);
+//   }
+// });
