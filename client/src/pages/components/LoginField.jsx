@@ -25,7 +25,7 @@ export const LoginField = () => {
         
         if (Object.keys(foundUser).length === 1) {
             if( foundUser[0].UserName === username && foundUser[0].PassWord === password) {
-                console.log(`User Found ${foundUser[0].FirstName} ${foundUser[0].LastName}: UUID - ${foundUser[0].UUID}`)
+                // console.log(`User Found ${foundUser[0].FirstName} ${foundUser[0].LastName}: UUID - ${foundUser[0].UUID}`)
 
                 if( foundUser[0].isAdmin === true) {
                     navigateTo('/admin')
