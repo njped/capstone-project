@@ -23,6 +23,10 @@ const authMiddleware = (req => {
   return req;
 })
 
+const signToken = (() => {
+  
+})
+
 module.exports = { authMiddleware };
   
   // signToken: function ({ email, username, _id }) {

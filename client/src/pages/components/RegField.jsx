@@ -124,6 +124,28 @@ export const RegField = () => {
         } else {
             alert(`Something went wrong with the username and email verification: ಠ_ಠ`)
         };
+        fetch('http://localhost:5173/user-reg', {
+            method: 'POST',
+            crossDomain: true,
+            headers: {
+                "Content-Type": "application/json",
+                Accept: "application/json",
+                "Access-Control-Allow-Origin": "*",
+            },
+            body: JSON.stringify({
+                firstNameInput, 
+                lastNameInput, 
+                emailInput, 
+                phoneNumberInput,
+                addressInput,
+                userNameInput,
+                passWordInput,
+                passWordReEnterInput
+            }),
+        }).then((res) => res.json())
+        .then((data) => {
+            console.log(data, "userRegister")
+        })
     };
 
 
@@ -205,11 +227,11 @@ export const RegField = () => {
                 />
                 <br />
 
-                <label htmlFor="passWordRe-enterInput">Re-enter Password: </label>
+                <label htmlFor="passWordReEnterInput">Re-enter Password: </label>
                 <input
                     type={passwordType} 
-                    name="passWordRe-enterInput" 
-                    id="passWordRe-enterInput" 
+                    name="passWordReEnterInput" 
+                    id="passWordReEnterInput" 
                     required={true}
                     value={reEnteredPassword}
                     onChange={(Event) => setReEnteredPassword(Event.target.value)}
