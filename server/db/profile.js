@@ -6,11 +6,11 @@ const userRegSchema = new mongoose.Schema(
   firstName: {type: String},
   lastName: {type: String},
   email: {type: String, required: true, unique: true, lowercase: true},
-  phone: {type: Number},
+  phone: {type: String},
   address: {type: String},
   username: {type: String, required: true, unique: true},
   password: {type: String, required: true},
-  reEnterPassWord: {type: String, required: true},
+  reEnterPassword: {type: String, required: true},
   isAdmin: {type: Boolean, default: false},
   // UUID: {type: String, default: uuidv4()} 
   },
@@ -19,7 +19,7 @@ const userRegSchema = new mongoose.Schema(
   }
 );
 
-const user = mongoose.model('users', userRegSchema);
+mongoose.model('users', userRegSchema);
 
 
 // app.post('/register', async (req, res) => {

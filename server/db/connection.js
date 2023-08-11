@@ -8,6 +8,7 @@ mongoose
   })
   .then(() => {
     console.log("Connected to the database")
+    // console.log(`DB URL: ${dbURL}`)
   })
   .catch((e) => {
     console.log("Connection with database failed")

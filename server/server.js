@@ -29,42 +29,36 @@ const User = mongoose.model('users')
 // app.get('/getUser', dbProfile.getProfile);
 app.post('/user-reg', async (req, res) => {
   const {
-    firstNameInput, 
-    lastNameInput, 
-    emailInput, 
-    phoneNumberInput,
-    addressInput,
-    userNameInput,
-    passWordInput,
-    passWordReEnterInput
+    username,
+    email,
+    password,
+    reEnterPassword
   } = req.body
 
-  const encryptedPassword = await bcrypt.hash(passWordInput, 10)
-  const encryptedRePassword = await bcrypt.hash(passWordReEnterInput, 10)
+  const encryptedPassword = await bcrypt.hash(password, 10)
+  const encryptedRePassword = await bcrypt.hash(reEnterPassword, 10)
   
   try {
-    // const oldUser = await User.findOne({ emailInput })
+    const existingUser = await User.findOne({ $or: [{email}, {username}] })
 
-    // if(oldUser) {
-    //   return res.send({status: "User Exists"})
-    // }
-    // else {
-    //   return res.send({status: "User Does Not Exist"})
-    // }
-    await profile.user.create({
-      firstName,
-      lastName,
-      email,
-      phone,
-      address,
-      username,
+    if(existingUser) {
+      if(existingUser.email === email) {
+        return res.status(400).send({status: "Email already in use"})
+      }
+      if(existingUser.username === username) {
+        return res.status(400).send({status: "Username already in use"})
+      }
+    }
+
+    await User.create({
+      ...req.body,
       password: encryptedPassword,
-      reEnterPassWord: encryptedRePassword,
-      isAdmin
+      reEnterPassword: encryptedRePassword
     })
-    res.send({status: 'ok'})
+
+    res.send("It Worked")
   } catch (error) {
-    res.send({status: 'something went wrong'})
+    res.status(500).send(error)
   }
 })
 
