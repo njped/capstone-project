@@ -117,8 +117,10 @@ app.get("/api", (req, res) => {
   res.json({ message: "Hello from server!" });
 });
 
-app.get("/api/courses", (req, res) => {
-  res.json(getCourses());
+app.get("/api/courses", async (req, res) => {
+  
+  res.json(await getCourses());
+
 });
 
 // app.get("/api/users/*")
@@ -139,8 +141,16 @@ const client = new MongoClient(uri, {
   }
 });
 
+async function init() {
+  await client.connect()
+};
+
+
 async function getCourses(){
   let cursor = client.db("courses").collection("courses").find()
   let array = await cursor.toArray()
-  return JSON.stringify(array)
+  // console.log(JSON.stringify(array));
+  return array;
 }
+
+init()

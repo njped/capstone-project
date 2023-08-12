@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEye, faLaptopMedical } from '@fortawesome/free-solid-svg-icons';
+import { faEye } from '@fortawesome/free-solid-svg-icons';
 import { faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 
 // import { v4 as uuidv4} from 'uuid';
@@ -199,24 +200,28 @@ export default class RegField extends Component {
     
         return (
         <>
-            {/* <form onSubmit={handleSubmit}> */}
+            <div id="regFormContainer">
+                <div id="regForm">
+                     {/* <form onSubmit={handleSubmit}> */}
             <form onSubmit={this.handleSubmit}>
-
-                {/* <label htmlFor="firstNameInput">First Name: </label>
-                <input
-                    type="text" 
-                    name="firstNameInput" 
-                    id="firstNameInput"
-                    value={firstName}
-                    onChange={(Event) => setFirstName(Event.target.value)}
+                        {/* <div className="regFormHeader">
+                            <h1>Registration</h1>
+                        </div>
+                        <div className="regFormInputs">
+                            <input
+                                type="text" 
+                                name="firstNameInput" 
+                                id="firstNameInput"
+                                placeholder="First Name"
+                                value={firstName}
+                                onChange={(Event) => setFirstName(Event.target.value)}
                 /> */}
                 <label>First Name: </label>
                 <input
                     type="text" 
                     id="firstNameInput"
                     onChange={(e) => this.setState({ firstNameInput: e.target.value })}
-                />
-                <br />
+                            />
 
                 {/* <label htmlFor="lastNameInput">Last Name: </label> */}
                 {/* <input
@@ -341,12 +346,21 @@ export default class RegField extends Component {
                 />
                 <br />
 
-                <button type="submit">Create User</button>
-                <button className='' onClick={this.handleClick}>
-                    { this.state.passwordType==="password"? <FontAwesomeIcon icon={faEyeSlash} /> : <FontAwesomeIcon icon={faEye} /> }
-                </button>
+                                <button className='togglePasswordVisability' onClick={this.handleClick}>
+                                    { this.state.passwordType==="password"? <FontAwesomeIcon icon={faEyeSlash} /> : <FontAwesomeIcon icon={faEye} /> }
+                                </button>
+                            </div>
+
+                        </div>
+                        <div className="regFormLink">
+                            <Link to='/'>User Login</Link>
+                        </div>
+                        
+                    </form>
+                </div>
                 
-            </form>
+            </div>
+                
         </>
     )}
 }

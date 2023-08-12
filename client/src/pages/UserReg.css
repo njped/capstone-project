@@ -1,0 +1,56 @@
+#regPageContainer {
+    width: auto;
+    height: auto;
+}
+
+#regFormContainer {
+    background-color: #FFFFFF;
+    padding: 0em 1.5em 1.5em 1.5em;
+    border: 1px solid #DDDDDD;
+    border-radius: 1em;
+}
+
+#regForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+    .regFormHeader {
+        width: min-content;
+        align-self: flex-start;
+    }
+        .regFormHeader h1 {
+            color: black;
+            font-size: 2rem;
+        }
+    .regFormInputs {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+    }
+        .regFormInputs input {
+            font-size: 1rem;
+            background-color: inherit;
+            margin: 0em 0em 2em 0em;
+            border: none;
+            border-bottom: 1px solid #DDDDDD;
+        }
+        .regFormButtons {
+            display: flex;
+            justify-content: space-around;
+        }
+            .regFormButtons button {
+                font-size: 1rem;
+                background-color: inherit;
+                margin: 0em 0em 1em 0em;
+                border: none;
+                border: 1px solid #DDDDDD;
+                border-radius: .5em;
+            }
+    .regFormLink {
+        display: flex;
+        justify-content: center;
+    }
+        .regFormLink a{
+            font-size: 1rem;
+        }
