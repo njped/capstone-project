@@ -1,0 +1,52 @@
+#loginPageContainer {
+    width: auto;
+    height: auto;
+}
+
+#loginFormContainer {
+    background-color: #FFFFFF;
+    padding: 0em 1.5em 1.5em 1.5em;
+    border: 1px solid #DDDDDD;
+    border-radius: 1em;
+}
+
+#loginForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+    .formHeader {
+        align-self: start;
+    }
+        .formHeader h1 {
+            color: black;
+            font-size: 2rem;
+        }
+    .formInputs {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        
+    }
+        .formInputs input {
+            font-size: 1rem;
+            background-color: inherit;
+            margin: 0em 0em 2em 0em;
+            border: none;
+            border-bottom: 1px solid #DDDDDD;
+        }
+        .formInputs button {
+            font-size: 1rem;
+            background-color: inherit;
+            margin: 0em 0em 1em 0em;
+            border: none;
+            border: 1px solid #DDDDDD;
+            border-radius: .5em;  
+        }
+    .formLink {
+        display: flex;
+    }
+        .formLink a {
+            font-size: 1rem;
+        }
