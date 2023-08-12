@@ -88,15 +88,6 @@ export default class RegField extends Component {
             passWordReEnterInput,
         } = this.state
 
-        console.log(firstNameInput, 
-            lastNameInput, 
-            emailInput, 
-            phoneNumberInput,
-            addressInput,
-            userNameInput,
-            passWordInput,
-            passWordReEnterInput)
-
         // localStorage.setItem('Existing-Accounts', JSON.stringify())
 
         // function searchUserNames(username) {
@@ -178,18 +169,29 @@ export default class RegField extends Component {
                 "Access-Control-Allow-Origin": "*",
             },
             body: JSON.stringify({
-                firstNameInput, 
-                lastNameInput, 
-                emailInput, 
-                phoneNumberInput,
-                addressInput,
-                userNameInput,
-                passWordInput,
-                passWordReEnterInput
+                firstName: firstNameInput, 
+                lastName: lastNameInput, 
+                email: emailInput, 
+                phone: phoneNumberInput,
+                address: addressInput,
+                username: userNameInput,
+                password: passWordInput,
+                reEnterPassword: passWordReEnterInput
             }),
-        }).then((res) => res.json())
+        })
+        .then((response) => {
+            if (response.ok) {
+                console.log('Success')
+            }
+            else {
+                console.log("Oopsies")
+            }
+            return response.json()})
         .then((data) => {
             console.log(data, "userRegister")
+            if(data.status === 'ok') {
+                window.location.href = 'login'
+            }
         })
     };
     render() {

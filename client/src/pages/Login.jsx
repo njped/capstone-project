@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import { LoginField } from "./components/LoginField";
+import LoginField  from "./components/LoginField";
 
 
 

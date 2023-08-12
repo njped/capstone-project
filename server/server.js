@@ -7,11 +7,11 @@ const app = express();
 const cors = require('cors')
 app.use(cors())
 const path = require("path");
+const jwt = require('jsonwebtoken')
 const passport = require('passport')
 app.use(express.json())
 app.use(express.urlencoded({extended: false}))
 
-// const jwt = require('jwt')
 
 require('dotenv').config()
 require('./db/courses.js');
@@ -59,6 +59,41 @@ app.post('/user-reg', async (req, res) => {
     res.send("It Worked")
   } catch (error) {
     res.status(500).send(error)
+  }
+})
+
+app.post("/login", async (req, res) => {
+  const {username, password} = req.body
+  console.log(username)
+  const user = await User.findOne({ username })
+  if(!user) {
+    return res.status(404).send("User not found")
+  }
+  if(await bcrypt.compare(password, user.password)) {
+    const token = jwt.sign({username: user.username}, process.env.ACCESS_TOKEN_SECRET)
+
+    if(res.status(201)) {
+      return res.json({status: "ok", data: token})
+    }
+    else {
+      return res.json({ error: "error"})
+    }
+  }
+  return res.status(404).send("Invalid Password")
+})
+
+app.post('/user-info', async (req, res) => {
+  const {token} = req.body;
+  try {
+    const user = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET)
+    console.log(user);
+    const nameOfUser = user.username
+    User.findOne({ username: nameOfUser}).then((data) => {
+      res.status(200).send({ data: data })
+    })
+  }
+  catch (error) {
+    res.status(404).send({ data: error })
   }
 })
 

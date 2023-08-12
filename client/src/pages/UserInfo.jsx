@@ -1,6 +1,7 @@
 import React from "react";
 
 import { NavBar } from './components/NavBar.jsx'
+import UserDetails from "./components/UserDetails.jsx";
 
 export function UserInfo() {
 
@@ -8,6 +9,7 @@ export function UserInfo() {
         <>
             <NavBar/>
             <h1>User Information Page</h1>
+            <UserDetails/>
         </>
     )
 };
