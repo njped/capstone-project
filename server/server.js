@@ -70,7 +70,9 @@ app.post("/login", async (req, res) => {
     return res.status(404).send("User not found")
   }
   if(await bcrypt.compare(password, user.password)) {
-    const token = jwt.sign({username: user.username}, process.env.ACCESS_TOKEN_SECRET)
+    const token = jwt.sign({username: user.username}, process.env.ACCESS_TOKEN_SECRET, {
+      expiresIn: '2h'
+    })
 
     if(res.status(201)) {
       return res.json({status: "ok", data: token})
@@ -85,11 +87,25 @@ app.post("/login", async (req, res) => {
 app.post('/user-info', async (req, res) => {
   const {token} = req.body;
   try {
-    const user = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET)
+    const user = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, res) => {
+      if(err) {
+        return "token has expired";
+      }
+      return res;
+    })
     console.log(user);
+
+    if(user === "token has expired") {
+      return res.status(404).send({ data: "token has expired" })
+    }
+
     const nameOfUser = user.username
-    User.findOne({ username: nameOfUser}).then((data) => {
+    User.findOne({ username: nameOfUser})
+    .then((data) => {
       res.status(200).send({ data: data })
+    })
+    .catch((error) => {
+      res.status(404).send({ data: error })
     })
   }
   catch (error) {
