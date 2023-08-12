@@ -1,9 +1,10 @@
 import React from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEye, faLaptopMedical } from '@fortawesome/free-solid-svg-icons';
+import { faEye } from '@fortawesome/free-solid-svg-icons';
 import { faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 
 import { v4 as uuidv4} from 'uuid';
@@ -129,99 +130,109 @@ export const RegField = () => {
 
     return (
         <>
-            <form onSubmit={handleSubmit}>
+            <div id="regFormContainer">
+                <div id="regForm">
+                     <form onSubmit={handleSubmit}>
+                        <div className="regFormHeader">
+                            <h1>Registration</h1>
+                        </div>
+                        <div className="regFormInputs">
+                            <input
+                                type="text" 
+                                name="firstNameInput" 
+                                id="firstNameInput" 
+                                placeholder="First Name"
+                                value={firstName}
+                                onChange={(Event) => setFirstName(Event.target.value)}
+                            />
 
-                <label htmlFor="firstNameInput">First Name: </label>
-                <input
-                    type="text" 
-                    name="firstNameInput" 
-                    id="firstNameInput" 
-                    value={firstName}
-                    onChange={(Event) => setFirstName(Event.target.value)}
-                />
-                <br />
+                            <input
+                                type="text" 
+                                name="lastNameInput" 
+                                id="lastNameInput" 
+                                placeholder="Last Name"
+                                value={lastName}
+                                onChange={(Event) => setLastName(Event.target.value)}
+                            />
 
-                <label htmlFor="lastNameInput">Last Name: </label>
-                <input
-                    type="text" 
-                    name="lastNameInput" 
-                    id="lastNameInput" 
-                    value={lastName}
-                    onChange={(Event) => setLastName(Event.target.value)}
-                />
-                <br />
+                            <input
+                                type="text" 
+                                name="emailInput" 
+                                id="emailInput" 
+                                placeholder="Email"
+                                required={true}
+                                value={email}
+                                onChange={(Event) => setEmail(Event.target.value)}
+                            />
+                            
+                            <input
+                                type="tel" 
+                                name="phoneNumberInput" 
+                                id="phoneNumberInput"
+                                placeholder="Phone Number"
+                                pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+                                value={phone}
+                                onChange={(Event) => setPhone(Event.target.value)}
+                            />
+                            
+                            <input
+                                type="text" 
+                                name="addressInput" 
+                                id="addressInput"
+                                placeholder="Address"
+                                value={address}
+                                onChange={(Event) => setAddress(Event.target.value)}
+                            />
+                            
+                            <input
+                                type="text" 
+                                name="userNameInput" 
+                                id="userNameInput" 
+                                placeholder="Username"
+                                required={true}
+                                value={username}
+                                onChange={(Event) => setUsername(Event.target.value)}
+                            />
+                            
+                            <input
+                                type={passwordType} 
+                                name="passWordInput" 
+                                id="passWordInput" 
+                                placeholder="Password"
+                                required={true}
+                                value={password}
+                                onChange={(Event) => setPassword(Event.target.value)}
+                            />
+                            
+                            <input
+                                type={passwordType} 
+                                name="passWordRe-enterInput" 
+                                id="passWordRe-enterInput" 
+                                placeholder="Renter Password"
+                                required={true}
+                                value={reEnteredPassword}
+                                onChange={(Event) => setReEnteredPassword(Event.target.value)}
+                            />
 
-                <label htmlFor="emailInput">Email: </label>
-                <input
-                    type="text" 
-                    name="emailInput" 
-                    id="emailInput" 
-                    required={true}
-                    value={email}
-                    onChange={(Event) => setEmail(Event.target.value)}
-                />
-                <br />
 
-                <label htmlFor="phoneNumberInput">Phone Number: </label>
-                <input
-                    type="tel" 
-                    name="phoneNumberInput" 
-                    id="phoneNumberInput"
-                    pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
-                    value={phone}
-                    onChange={(Event) => setPhone(Event.target.value)}
-                />
-                <br />
+                            <div className="regFormButtons">
+                                <button className="createUserButton" type="submit">Create User</button>
 
-                <label htmlFor="addressInput">Home Address: </label>
-                <input
-                    type="text" 
-                    name="addressInput" 
-                    id="addressInput"
-                    value={address}
-                    onChange={(Event) => setAddress(Event.target.value)}
-                />
-                <br />
+                                <button className='togglePasswordVisability' onClick={handleClick}>
+                                    { passwordType==="password"? <FontAwesomeIcon icon={faEyeSlash} /> : <FontAwesomeIcon icon={faEye} /> }
+                                </button>
+                            </div>
 
-                <label htmlFor="userNameInput">Username: </label>
-                <input
-                    type="text" 
-                    name="userNameInput" 
-                    id="userNameInput" 
-                    required={true}
-                    value={username}
-                    onChange={(Event) => setUsername(Event.target.value)}
-                />
-                <br />
-
-                <label htmlFor="passWordInput">Password: </label>
-                <input
-                    type={passwordType} 
-                    name="passWordInput" 
-                    id="passWordInput" 
-                    required={true}
-                    value={password}
-                    onChange={(Event) => setPassword(Event.target.value)}
-                />
-                <br />
-
-                <label htmlFor="passWordRe-enterInput">Re-enter Password: </label>
-                <input
-                    type={passwordType} 
-                    name="passWordRe-enterInput" 
-                    id="passWordRe-enterInput" 
-                    required={true}
-                    value={reEnteredPassword}
-                    onChange={(Event) => setReEnteredPassword(Event.target.value)}
-                />
-                <br />
-
-                <button type="submit">Create User</button>
-                <button className='' onClick={handleClick}>
-                    { passwordType==="password"? <FontAwesomeIcon icon={faEyeSlash} /> : <FontAwesomeIcon icon={faEye} /> }
-                </button>
+                        </div>
+                        <div className="regFormLink">
+                            <Link to='/'>User Login</Link>
+                        </div>
+                        
+                    </form>
+                </div>
                 
-            </form>
+            </div>
+                
         </>
     )
 }
