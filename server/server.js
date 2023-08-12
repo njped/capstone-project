@@ -117,10 +117,8 @@ app.get("/api", (req, res) => {
   res.json({ message: "Hello from server!" });
 });
 
-app.get("/api/courses", async (req, res) => {
-  
-  res.json(await getCourses());
-
+app.get("/api/courses", (req, res) => {
+  res.json(getCourses());
 });
 
 // app.get("/api/users/*")

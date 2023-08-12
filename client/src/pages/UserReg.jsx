@@ -10,6 +10,10 @@ export function UserReg() {
             <div id="regPageContainer">
                 <RegField/>
             </div>
+        <>  
+            <div id="regPageContainer">
+                <RegField/>
+            </div>
         </>
     );
 };
