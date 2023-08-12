@@ -40,8 +40,8 @@ export default class LoginField extends Component {
         .then((data) => {
             console.log(data, "userRegister")
             if(data.status === 'ok') {
-                alert("login succussful")
                 window.localStorage.setItem("token", data.data)
+                window.localStorage.setItem("loggedIn", true)
                 window.location.href = 'user-info'
             }
         })

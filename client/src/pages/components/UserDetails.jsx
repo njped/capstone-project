@@ -7,6 +7,7 @@ export default class UserDetails extends Component {
         this.state = {
             userData: ""
         }
+        this.logOut = this.logOut.bind(this)
     }
 
     componentDidMount() {
@@ -26,8 +27,17 @@ export default class UserDetails extends Component {
             .then((data) => {
                 console.log(data, "userData")
                 this.setState({ userData: data.data })
+                if(data.data === "token has expired") {
+                    this.logOut()
+                }
             })
     }
+
+    logOut = () => {
+        window.localStorage.clear();
+        window.location.href = "login"
+    }
+
     render() {
         return (
             <>
@@ -35,6 +45,7 @@ export default class UserDetails extends Component {
                     Name<h1>{ this.state.userData.firstName }</h1>
                     Email<h1>{ this.state.userData.email }</h1>
                 </div>
+                <button onClick={this.logOut}>Logout</button>
             </>
         )
     };
