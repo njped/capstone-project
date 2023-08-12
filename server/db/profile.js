@@ -20,4 +20,3 @@ const userRegSchema = new mongoose.Schema(
 );
 
 mongoose.model('users', userRegSchema);
-

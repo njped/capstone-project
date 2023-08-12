@@ -27,6 +27,8 @@ const PORT = process.env.PORT || 3001;
 app.use(express.static(path.resolve(__dirname, "../client/dist")));
 const User = mongoose.model('users')
 // app.get('/getUser', dbProfile.getProfile);
+
+// User Registration Endpoints
 app.post('/user-reg', async (req, res) => {
   const {
     username,
@@ -35,6 +37,7 @@ app.post('/user-reg', async (req, res) => {
     reEnterPassword
   } = req.body
 
+  // Encrytpt Passwords
   const encryptedPassword = await bcrypt.hash(password, 10)
   const encryptedRePassword = await bcrypt.hash(reEnterPassword, 10)
   
@@ -62,6 +65,7 @@ app.post('/user-reg', async (req, res) => {
   }
 })
 
+// Login Endpoints
 app.post("/login", async (req, res) => {
   const {username, password} = req.body
   console.log(username)
@@ -84,6 +88,7 @@ app.post("/login", async (req, res) => {
   return res.status(404).send("Invalid Password")
 })
 
+// Student's User Info
 app.post('/user-info', async (req, res) => {
   const {token} = req.body;
   try {
