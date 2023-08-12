@@ -1,6 +1,9 @@
 import React from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+
+
 
 export const LoginField = () => {
     const [ username, setUsername ] = useState('')
@@ -46,27 +49,36 @@ export const LoginField = () => {
 
     return(
         <>
-            <form id="loginForm" onSubmit={handleSubmit}>
-                <label htmlFor="userNameInput">Username: </label>
-                <input
-                    type="text" 
-                    id="userNameInput"
-                    autoCapitalize="off"
-                    required={true}
-                    onChange={ Event => setUsername( Event.target.value )}
+            <div id="loginFormContainer">
+                <form id="loginForm" onSubmit={handleSubmit}>
+                    <div className="formHeader">
+                        <h1>Login</h1>
+                    </div>
+                    <div className="formInputs">
+                        <input
+                            type="text" 
+                            id="userNameInput"
+                            autoCapitalize="off"
+                            placeholder="Username"
+                            required={true}
+                            onChange={ Event => setUsername( Event.target.value )}
 
-                />
-                <br />
-                <label htmlFor="passWordInput">Password: </label>
-                <input
-                    type="password"
-                    id="passWordInput"
-                    required={true}
-                    onChange={ Event => setPassword( Event.target.value )}
-                />
-                <br />
-                <button type="submit">Log In</button>
-            </form>
+                        />
+                        <input
+                            type="password"
+                            id="passWordInput"
+                            placeholder="Password"
+                            required={true}
+                            onChange={ Event => setPassword( Event.target.value )}
+                        />
+                        <button type="submit">Go</button>
+                    </div>
+                    <div className="formLink">
+                        <Link to='/user-reg' >Create Account</Link>
+                    </div>
+                </form>
+                
+            </div>     
         </>
     );
 };
