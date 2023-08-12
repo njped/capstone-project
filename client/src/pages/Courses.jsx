@@ -1,6 +1,7 @@
 import React from "react";
 import { NavBar } from './components/NavBar.jsx'
 import { CourseManage } from "./components/CourseManage.jsx";
+import '../App.css';
 
 export function Courses() {
 

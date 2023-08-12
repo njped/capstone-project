@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEye, faLaptopMedical } from '@fortawesome/free-solid-svg-icons';
+import { faEye } from '@fortawesome/free-solid-svg-icons';
 import { faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 
-// import { v4 as uuidv4} from 'uuid';
 
 
 export default class RegField extends Component {
@@ -199,154 +199,93 @@ export default class RegField extends Component {
     
         return (
         <>
-            {/* <form onSubmit={handleSubmit}> */}
-            <form onSubmit={this.handleSubmit}>
+            <div id="regFormContainer">
+                <div id="regForm">
 
-                {/* <label htmlFor="firstNameInput">First Name: </label>
-                <input
-                    type="text" 
-                    name="firstNameInput" 
-                    id="firstNameInput"
-                    value={firstName}
-                    onChange={(Event) => setFirstName(Event.target.value)}
-                /> */}
-                <label>First Name: </label>
-                <input
-                    type="text" 
-                    id="firstNameInput"
-                    onChange={(e) => this.setState({ firstNameInput: e.target.value })}
-                />
-                <br />
+                    <form onSubmit={this.handleSubmit}>
+                        <div className="regFormHeader">
+                            <h1>Registration</h1>
+                        </div>
+                        <div className="regFormInputs">
+                            <input
+                                type="text" 
+                                id="firstNameInput"
+                                placeholder="First Nane"
+                                onChange={(e) => this.setState({ firstNameInput: e.target.value })}
+                            />
 
-                {/* <label htmlFor="lastNameInput">Last Name: </label> */}
-                {/* <input
-                    type="text" 
-                    name="lastNameInput" 
-                    id="lastNameInput" 
-                    value={lastName}
-                    onChange={(Event) => setLastName(Event.target.value)}
-                /> */}
-                <label>Last Name: </label>
-                <input
-                    type="text" 
-                    id="lastNameInput"
-                    onChange={(e) => this.setState({ lastNameInput: e.target.value })}
-                />
-                <br />
 
-                {/* <label htmlFor="emailInput">Email: </label>
-                <input
-                    type="text" 
-                    name="emailInput" 
-                    id="emailInput" 
-                    required={true}
-                    value={email}
-                    onChange={(Event) => setEmail(Event.target.value)}
-                /> */}
-                <label>Email: </label>
-                <input
-                    type="text" 
-                    id="emailInput"
-                    onChange={(e) => this.setState({ emailInput: e.target.value })}
-                />
-                <br />
+                            <input
+                                type="text" 
+                                id="lastNameInput"
+                                placeholder="Last Name"
+                                onChange={(e) => this.setState({ lastNameInput: e.target.value })}
+                            />
 
-                {/* <label htmlFor="phoneNumberInput">Phone Number: </label>
-                <input
-                    type="tel" 
-                    name="phoneNumberInput" 
-                    id="phoneNumberInput"
-                    pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
-                    placeholder="Ex: 801-000-000"
-                    value={phone}
-                    onChange={(Event) => setPhone(Event.target.value)}
-                /> */}
-                <label>Phone Number: </label>
-                <input
-                    type="text" 
-                    id="phoneNumberInput"
-                    pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
-                    placeholder="Ex: 801-000-000"
-                    onChange={(e) => this.setState({ phoneNumberInput: e.target.value })}
-                />
-                <br />
 
-                {/* <label htmlFor="addressInput">Home Address: </label>
-                <input
-                    type="text" 
-                    name="addressInput" 
-                    id="addressInput"
-                    value={address}
-                    onChange={(Event) => setAddress(Event.target.value)}
-                /> */}
-                <label>Home Address: </label>
-                <input
-                    type="text" 
-                    id="addressInput"
-                    onChange={(e) => this.setState({ addressInput: e.target.value })}
-                />
-                <br />
+                            <input
+                                type="text" 
+                                id="emailInput"
+                                placeholder="Email"
+                                onChange={(e) => this.setState({ emailInput: e.target.value })}
+                            />
 
-                {/* <label htmlFor="userNameInput">Username: </label>
-                <input
-                    type="text" 
-                    name="userNameInput" 
-                    id="userNameInput" 
-                    required={true}
-                    value={username}
-                    onChange={(Event) => setUsername(Event.target.value)}
-                /> */}
-                <label>Username: </label>
-                <input
-                    type="text" 
-                    id="userNameInput"
-                    required={true}
-                    onChange={(e) => this.setState({ userNameInput: e.target.value })}
-                />
-                <br />
 
-                {/* <label htmlFor="passWordInput">Password: </label>
-                <input
-                    type={passwordType}
-                    name="passWordInput" 
-                    id="passWordInput" 
-                    required={true}
-                    value={password}
-                    onChange={(Event) => setPassword(Event.target.value)}
-                /> */}
-                <label>Password: </label>
-                <input
-                    type={this.state.passwordType} 
-                    id="passWordInput"
-                    required={true}
-                    onChange={(e) => this.setState({ passWordInput: e.target.value })}
-                />
-                <br />
+                            <input
+                                type="text" 
+                                id="phoneNumberInput"
+                                pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+                                placeholder="Ex: 801-000-000"
+                                onChange={(e) => this.setState({ phoneNumberInput: e.target.value })}
+                            />
 
-                {/* <label htmlFor="passWordReEnterInput">Re-enter Password: </label>
-                <input
-                    type={passwordType} 
-                    name="passWordReEnterInput" 
-                    id="passWordReEnterInput" 
-                    required={true}
-                    value={reEnteredPassword}
-                    onChange={(Event) => setReEnteredPassword(Event.target.value)}
-                /> */}
-                <label>Re-Enter Password: </label>
-                <input
-                    type={this.state.passwordType} 
-                    id="passWordReEnterInput"
-                    required={true}
-                    onChange={(e) => this.setState({ passWordReEnterInput: e.target.value })}
-                />
-                <br />
 
-                <button type="submit">Create User</button>
-                <button className='' onClick={this.handleClick}>
-                    { this.state.passwordType==="password"? <FontAwesomeIcon icon={faEyeSlash} /> : <FontAwesomeIcon icon={faEye} /> }
-                </button>
-                
-            </form>
+                            <input
+                                type="text" 
+                                id="addressInput"
+                                placeholder="Address"
+                                onChange={(e) => this.setState({ addressInput: e.target.value })}
+                            />
+
+
+                            <input
+                                type="text" 
+                                id="userNameInput"
+                                placeholder="Username"
+                                required={true}
+                                onChange={(e) => this.setState({ userNameInput: e.target.value })}
+                            />
+
+
+                            <input
+                                type={this.state.passwordType} 
+                                id="passWordInput"
+                                placeholder="Password"
+                                required={true}
+                                onChange={(e) => this.setState({ passWordInput: e.target.value })}
+                            />
+
+
+                            <input
+                                type={this.state.passwordType} 
+                                id="passWordReEnterInput"
+                                placeholder="Reenter Password"
+                                required={true}
+                                onChange={(e) => this.setState({ passWordReEnterInput: e.target.value })}
+                            />
+                            <div className="regFormButtons">
+                                <button type="Submit">Create User</button>
+                                <button className='togglePasswordVisability' onClick={this.handleClick}>
+                                    { this.state.passwordType==="password"? <FontAwesomeIcon icon={faEyeSlash} /> : <FontAwesomeIcon icon={faEye} /> }
+                                </button>
+                            </div>
+                        </div>
+                        <div className="regFormLink">
+                            <Link to='/'>User Login</Link>
+                        </div>           
+                    </form>
+                </div>
+            </div>  
         </>
     )}
 }

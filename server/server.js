@@ -144,8 +144,16 @@ const client = new MongoClient(uri, {
   }
 });
 
+async function init() {
+  await client.connect()
+};
+
+
 async function getCourses(){
   let cursor = client.db("courses").collection("courses").find()
   let array = await cursor.toArray()
-  return JSON.stringify(array)
+  // console.log(JSON.stringify(array));
+  return array;
 }
+
+init()

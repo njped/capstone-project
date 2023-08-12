@@ -1,19 +1,17 @@
 import React from "react";
-import { Link } from "react-router-dom";
-
+// import { Link } from "react-router-dom";
 import LoginField  from "./components/LoginField";
+import './Login.css';
 
 
 
 export function Login() {
 
     return(
-        <>
-            <h1>Please Login:</h1>
-            <br />
-            <LoginField/>
-            <br />
-            <Link to='/user-reg'>Create Account</Link>
+        <> 
+            <div id="loginPageContainer">
+                <LoginField/>
+            </div>
         </>
     )
 }
