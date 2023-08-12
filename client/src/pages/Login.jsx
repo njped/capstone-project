@@ -12,10 +12,6 @@ export function Login() {
             <div id="loginPageContainer">
                 <LoginField/>
             </div>
-        <> 
-            <div id="loginPageContainer">
-                <LoginField/>
-            </div>
         </>
     )
 }

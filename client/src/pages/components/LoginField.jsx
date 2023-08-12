@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 
 
 
+
 export default class LoginField extends Component {
     // const [ username, setUsername ] = useState('')
     // const [ password, setPassword ] = useState('')
@@ -82,41 +83,35 @@ export default class LoginField extends Component {
     render() {
     return(
         <>
-            {/* <form id="loginForm" onSubmit={handleSubmit}> */}
-            <form id="loginForm" onSubmit={this.handleSubmit}>
-                <label htmlFor="userNameInput">Username: </label>
-                {/* <input
-                    type="text" 
-                    id="userNameInput"
-                    autoCapitalize="off"
-                    required={true}
-                    onChange={ Event => setUsername( Event.target.value )}
-                /> */}
-                <input
-                    type="text" 
-                    id="userNameInput"
-                    required={true}
-                    autoCapitalize="off"
-                    onChange={(e) => this.setState({ userNameInput: e.target.value })}
-                />
-                <br />
-                {/* <label htmlFor="passWordInput">Password: </label>
-                <input
-                    type="password"
-                    id="passWordInput"
-                    required={true}
-                    onChange={ Event => setPassword( Event.target.value )}
-                /> */}
-                <label>Password: </label>
-                <input
-                    type="password"
-                    id="passWordInput"
-                    required={true}
-                    onChange={(e) => this.setState({ passWordInput: e.target.value })}
-                />
-                <br />
-                <button type="submit">Log In</button>
-            </form>
+            <div id="loginFormContainer">
+                <form id="loginForm" onSubmit={this.handleSubmit}>
+                    <div className="formHeader">
+                        <h1>Login</h1>
+                    </div>
+                    <div className="formInputs">
+                        <input
+                            type="text" 
+                            id="userNameInput"
+                            placeholder="Username"
+                            required={true}
+                            autoCapitalize="off"
+                            onChange={(e) => this.setState({ userNameInput: e.target.value })}
+                        />
+                        <input
+                            type="password"
+                            id="passWordInput"
+                            placeholder="Password"
+                            required={true}
+                            onChange={(e) => this.setState({ passWordInput: e.target.value })}
+                        />
+                        <button type="submit">Go</button>
+                    </div>
+                    <div className="formLink">
+                        <Link to='/user-reg'>Create Account</Link>
+                    </div>
+                </form>
+            </div>
+
         </>
     )};
 };
