@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
-require('./connection.js')
+const bcrypt = require('bcrypt');
+require('./connection.js');
 
 const userRegSchema = new mongoose.Schema(
   {
@@ -18,5 +19,10 @@ const userRegSchema = new mongoose.Schema(
     collection: "users"
   }
 );
+
+// Encrypt password before User creation
+userRegSchema.pre('save', async () => {
+  this.password = await bcrypt().hash(this.password, 12);
+})
 
 mongoose.model('users', userRegSchema);

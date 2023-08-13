@@ -35,10 +35,10 @@ app.post('/user-reg', async (req, res) => {
     reEnterPassword
   } = req.body
 
-  // Encrytpt Passwords
-  const encryptedPassword = await bcrypt.hash(password, 10)
-  const encryptedRePassword = await bcrypt.hash(reEnterPassword, 10)
-  
+  if (password !== reEnterPassword) {
+    return res.status(400).send({status: 'Passwords do not match'});
+  }
+
   // Checks to see if there is a copy of either email or username before saving into database
   try {
     const existingUser = await User.findOne({ $or: [{email}, {username}] })
@@ -52,11 +52,7 @@ app.post('/user-reg', async (req, res) => {
       }
     }
 
-    await User.create({
-      ...req.body,
-      password: encryptedPassword,
-      reEnterPassword: encryptedRePassword
-    })
+    await User.create(req.body)
     res.status(200).send({status: 'ok'})
   } catch (error) {
     res.status(500).send(error)
@@ -75,9 +71,14 @@ app.post("/login", async (req, res) => {
 
   // Creates token and expires in 2 hours
   if(await bcrypt.compare(password, user.password)) {
-    const token = jwt.sign({username: user.username}, process.env.ACCESS_TOKEN_SECRET, {
+    const token = jwt.sign({username: user._id}, process.env.ACCESS_TOKEN_SECRET, {
       expiresIn: '2h'
     })
+    
+    res.cookie("token", user, {
+      withCredentials: true,
+      httpOnly: false,
+    });
 
     if(res.status(201)) {
       return res.json({status: "ok", data: token})

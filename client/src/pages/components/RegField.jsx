@@ -59,6 +59,33 @@ export default class RegField extends Component {
             passWordReEnterInput,
         } = this.state
 
+        // Checking to see if there is a password
+        if(this.state.passWordInput === null || this.state.passWordInput === "")
+        {
+            return alert("Password is required")
+        }
+        if(this.state.passWordReEnterInput === null || this.state.passWordReEnterInput === "")
+        {
+            return alert("Re-Enter Password is required")
+        }
+
+        // Checking Passwords are the same
+        if(this.state.passWordInput !== this.state.passWordReEnterInput)
+        {
+            return alert("Passwords are not the same")
+        }
+
+        // Checking email is typed
+        if(this.state.emailInput === null || this.state.emailInput === "")
+        {
+            return alert("Email is required")
+        }
+
+        // Checking if username is typed
+        if(this.state.userNameInput === null || this.state.userNameInput === "")
+        {
+            return alert("Username is required")
+        }
 
         fetch('http://localhost:5050/user-reg', {
             method: "POST",
@@ -97,35 +124,6 @@ export default class RegField extends Component {
         .catch(error => {
             console.log(error)
         })
-
-        
-        // Checking to see if there is a password
-        if(this.state.passWordInput === null || this.state.passWordInput === "")
-        {
-            return alert("Password is required")
-        }
-        if(this.state.passWordReEnterInput === null || this.state.passWordReEnterInput === "")
-        {
-            return alert("Re-Enter Password is required")
-        }
-
-        // Checking Passwords are the same
-        if(this.state.passWordInput !== this.state.passWordReEnterInput)
-        {
-            return alert("Passwords are not the same")
-        }
-
-        // Checking email is typed
-        if(this.state.emailInput === null || this.state.emailInput === "")
-        {
-            return alert("Email is required")
-        }
-
-        // Checking if username is typed
-        if(this.state.userNameInput === null || this.state.userNameInput === "")
-        {
-            return alert("Username is required")
-        }
 
     };
     render() {

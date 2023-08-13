@@ -1,15 +1,20 @@
 import React from "react";
 import { NavBar } from './components/NavBar.jsx'
 import { CourseManage } from "./components/CourseManage.jsx";
-import '../App.css';
+import './Courses.css';
 
 export function Courses() {
 
     return (
-        <>
-            <NavBar/>
-            <h1>Courses Page</h1>
-            <CourseManage/>
+        <> 
+            <div id="coursePageContainer">
+                <div id="coursesPageNav">
+                    <NavBar/>   
+                </div>
+                <div id="coursesPageManage">
+                    <CourseManage/>
+                </div>
+            </div>
         </>
     )
 }
