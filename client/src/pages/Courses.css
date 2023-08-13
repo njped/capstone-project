@@ -73,11 +73,10 @@ body, header, div {
                         font-size: calc(12px + 0.390625vw);
                     }
                     .moreCourseInfoButton {
-                        width: calc(1% + 0.390625vw);
                         align-self: flex-start;
                         border: none;
                         background-color: inherit;
-                        font-size: calc(12px + 0.390625vw);
+                        font-size: calc(6px + 0.390625vw);
 
                     }
                         .courseAdditionalInfoDivContainer {

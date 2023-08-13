@@ -52,7 +52,7 @@ export const CourseManage = () => {
                 moreCourseInfoButton.setAttribute('id', `${course['Course ID']}`);
                 moreCourseInfoButton.setAttribute('class', 'moreCourseInfoButton');
                 moreCourseInfoButton.setAttribute('type', 'button');
-                moreCourseInfoButton.innerText = '⬇';
+                moreCourseInfoButton.innerText = 'Show More ▾';
                 courseMainInfoDiv.appendChild(moreCourseInfoButton);
 
                 courseCard.appendChild(courseMainInfoDiv);
@@ -122,10 +122,10 @@ export const CourseManage = () => {
                 console.log(hiddenContent.style.display);
                 if (hiddenContent.style.display === '') {
                     hiddenContent.style.display = "flex"
-                    event.target.innerText = '⬆';
+                    event.target.innerText = 'Show Less ▴';
                 } else {
                     hiddenContent.style.display = '';
-                    event.target.innerText = '⬇';
+                    event.target.innerText = 'Show More ▾';
                 }
             } else {
                 console.log(`This isnt a button`);
