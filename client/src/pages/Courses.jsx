@@ -12,7 +12,7 @@ export function Courses() {
                     <NavBar/>   
                 </div>
                 <div id="coursesPageManage">
-                    <CourseManage/>
+                   <CourseManage/>
                 </div>
             </div>
         </>
