@@ -5,28 +5,26 @@ const mongoose = require('mongoose')
 const bcrypt = require('bcryptjs')
 const app = express();
 const cors = require('cors')
-app.use(cors())
 const path = require("path");
 const jwt = require('jsonwebtoken')
 const passport = require('passport')
-app.use(express.json())
-app.use(express.urlencoded({extended: false}))
-
 
 require('dotenv').config()
 require('./db/courses.js');
 require('./db/connection.js')
 require('./db/profile.js')
-// const authMiddleware  = require('./authServer.js');
+
+app.use(cors())
+app.use(express.json())
+app.use(express.urlencoded({extended: false}))
 
 const PORT = process.env.PORT || 3001;
+// app.use(require('./routes'));
 
 
 // For production not development
-
 app.use(express.static(path.resolve(__dirname, "../client/dist")));
 const User = mongoose.model('users')
-// app.get('/getUser', dbProfile.getProfile);
 
 // User Registration Endpoints
 app.post('/user-reg', async (req, res) => {
@@ -41,6 +39,7 @@ app.post('/user-reg', async (req, res) => {
   const encryptedPassword = await bcrypt.hash(password, 10)
   const encryptedRePassword = await bcrypt.hash(reEnterPassword, 10)
   
+  // Checks to see if there is a copy of either email or username before saving into database
   try {
     const existingUser = await User.findOne({ $or: [{email}, {username}] })
 
@@ -58,8 +57,7 @@ app.post('/user-reg', async (req, res) => {
       password: encryptedPassword,
       reEnterPassword: encryptedRePassword
     })
-
-    res.send("It Worked")
+    res.status(200).send({status: 'ok'})
   } catch (error) {
     res.status(500).send(error)
   }
@@ -68,11 +66,14 @@ app.post('/user-reg', async (req, res) => {
 // Login Endpoints
 app.post("/login", async (req, res) => {
   const {username, password} = req.body
-  console.log(username)
+  
+  // Tries to find the user
   const user = await User.findOne({ username })
   if(!user) {
     return res.status(404).send("User not found")
   }
+
+  // Creates token and expires in 2 hours
   if(await bcrypt.compare(password, user.password)) {
     const token = jwt.sign({username: user.username}, process.env.ACCESS_TOKEN_SECRET, {
       expiresIn: '2h'
@@ -90,6 +91,7 @@ app.post("/login", async (req, res) => {
 
 // Student's User Info
 app.post('/user-info', async (req, res) => {
+  // Checks to see if token is still valid
   const {token} = req.body;
   try {
     const user = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, res) => {
@@ -118,6 +120,16 @@ app.post('/user-info', async (req, res) => {
   }
 })
 
+// Get All Users
+app.get('/getUsers', async (req, res) => {
+  try {
+    const allUsers = await User.find({})
+    res.status(200).send({data: allUsers})
+  } catch (error) {
+    console.log(error.message)
+  }
+})
+
 app.get("/api", (req, res) => {
   res.json({ message: "Hello from server!" });
 });
@@ -136,24 +148,24 @@ app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);
 });
 
-const client = new MongoClient(uri, {
-  serverApi: {
-    version: ServerApiVersion.v1,
-    strict: true,
-    deprecationErrors: true,
-  }
-});
+// const client = new MongoClient(uri, {
+//   serverApi: {
+//     version: ServerApiVersion.v1,
+//     strict: true,
+//     deprecationErrors: true,
+//   }
+// });
 
-async function init() {
-  await client.connect()
-};
+// async function init() {
+//   await client.connect()
+// };
 
 
-async function getCourses(){
-  let cursor = client.db("courses").collection("courses").find()
-  let array = await cursor.toArray()
-  // console.log(JSON.stringify(array));
-  return array;
-}
+// async function getCourses(){
+//   let cursor = client.db("courses").collection("courses").find()
+//   let array = await cursor.toArray()
+//   // console.log(JSON.stringify(array));
+//   return array;
+// }
 
-init()
+// init()
