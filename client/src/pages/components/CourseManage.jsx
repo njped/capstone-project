@@ -1,5 +1,9 @@
 import React, { useEffect } from "react";
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowUp } from '@fortawesome/free-solid-svg-icons';
+import { faArrowDown } from '@fortawesome/free-solid-svg-icons';
+
 export const CourseManage = () => {
 
     async function CoursesApiFunction() {
@@ -27,7 +31,7 @@ export const CourseManage = () => {
                 let courseTitle = document.createElement('h3');
                 courseTitle.setAttribute('id', `db.courseTitle-${course['Course ID']}`);
                 courseTitle.setAttribute('class', 'courseTitle');
-                courseTitle.innerText = `${course['Course Title']}`;
+                courseTitle.innerText = `${course['Course Title']}:`;
                 courseHeaderDiv.appendChild(courseTitle);
                 
                 let courseId = document.createElement('h3');
@@ -47,11 +51,15 @@ export const CourseManage = () => {
                 let moreCourseInfoButton = document.createElement('button');
                 moreCourseInfoButton.setAttribute('id', `${course['Course ID']}`);
                 moreCourseInfoButton.setAttribute('class', 'moreCourseInfoButton');
-                moreCourseInfoButton.setAttribute('type', 'click');
-                moreCourseInfoButton.innerText = `^`;
+                moreCourseInfoButton.setAttribute('type', 'button');
+                moreCourseInfoButton.innerText = '⬇';
                 courseMainInfoDiv.appendChild(moreCourseInfoButton);
 
                 courseCard.appendChild(courseMainInfoDiv);
+
+                let courseAdditionalInfoDivContainer = document.createElement("div");
+                courseAdditionalInfoDivContainer.setAttribute('id', `courseAdditionalInfoDivContainer-${course['Course ID']}`);
+                courseAdditionalInfoDivContainer.setAttribute('class', 'courseAdditionalInfoDivContainer');
 
                 let courseAdditionalInfoDiv = document.createElement('div');
                 courseAdditionalInfoDiv.setAttribute('id', `courseAdditionalInfoDiv-${course['Course ID']}`)
@@ -60,28 +68,29 @@ export const CourseManage = () => {
                 let classroomNumber = document.createElement('h3');
                 classroomNumber.setAttribute('id', `db.classroomNumber-${course['Course ID']}`);
                 classroomNumber.setAttribute('class', 'classroomNumber');
-                classroomNumber.innerText = `${course['Classroom Number']}`;
+                classroomNumber.innerText = `Classroom Number: ${course['Classroom Number']}`;
                 courseAdditionalInfoDiv.appendChild(classroomNumber);
 
                 let creditHours = document.createElement('h3');
                 creditHours.setAttribute('id', `db.creditHours-${course['Course ID']}`);
                 creditHours.setAttribute('class', 'creditHours');
-                creditHours.innerText = `${course['Credit Hours']}`;
+                creditHours.innerText = `Credit Hours: ${course['Credit Hours']}`;
                 courseAdditionalInfoDiv.appendChild(creditHours);
 
                 let tuitionCost = document.createElement('h3');
                 tuitionCost.setAttribute('id', `db.tuitionCost-${course['Course ID']}`);
                 tuitionCost.setAttribute('class', 'tuitionCost');
-                tuitionCost.innerText = `${course['Tuition Cost']}`;
+                tuitionCost.innerText = `Course Cost: ${course['Tuition Cost']}`;
                 courseAdditionalInfoDiv.appendChild(tuitionCost);
 
                 let courseCapacity = document.createElement('h3');
                 courseCapacity.setAttribute('id', `db.courseCapacity-${course['Course ID']}`);
                 courseCapacity.setAttribute('class', 'courceCapacity');
-                courseCapacity.innerText = `${course['Capacity']}`;
+                courseCapacity.innerText = `Class Size: ${course['Capacity']}`;
                 courseAdditionalInfoDiv.appendChild(courseCapacity);
 
-                courseCard.appendChild(courseAdditionalInfoDiv);
+                courseAdditionalInfoDivContainer.appendChild(courseAdditionalInfoDiv)
+                courseCard.appendChild(courseAdditionalInfoDivContainer);
 
                 let coursesCardButtonDiv = document.createElement('div');
                 coursesCardButtonDiv.setAttribute('id', `coursesCardButtonDiv-${course['Course ID']}`)
@@ -105,7 +114,22 @@ export const CourseManage = () => {
         console.log(event.target.tagName);
         let isButton = event.target.tagName
         if (isButton === 'BUTTON') {
-            console.log(`This is a button`);
+            if (event.target.type === "submit") {
+                console.log("This is a Submit Button");
+            } else if (event.target.type === 'button') {
+                // console.log(event.target.id);
+                let hiddenContent = document.getElementById(`courseAdditionalInfoDivContainer-${event.target.id}`)
+                console.log(hiddenContent.style.display);
+                if (hiddenContent.style.display === '') {
+                    hiddenContent.style.display = "flex"
+                    event.target.innerText = '⬆';
+                } else {
+                    hiddenContent.style.display = '';
+                    event.target.innerText = '⬇';
+                }
+            } else {
+                console.log(`This isnt a button`);
+            }
         } else {
             console.log(`This isnt a button`);
         }
@@ -117,7 +141,7 @@ export const CourseManage = () => {
 
     return (
         <>
-            <div id="courseComponentContainer" >
+            <div id="coursesComponentContainer" >
                 <h1>Courses</h1>
                 <div id="coursesCardContainer">
 
