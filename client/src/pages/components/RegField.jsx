@@ -26,35 +26,7 @@ export default class RegField extends Component {
         this.handleClick = this.handleClick.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
     }
-    // const [ firstName, setFirstName ] = useState('');
-    // const [ lastName, setLastName ] = useState('');
-    // const [ email, setEmail ] = useState('');
-    // const [ phone, setPhone ] = useState('');
-    // const [ address, setAddress ] = useState('');
-    // const [ username, setUsername ] = useState('');
-    // const [ password, setPassword ] = useState('');
-    // const [ reEnteredPassword, setReEnteredPassword ] = useState('');
-    // const [ passwordType, setPasswordType ] = useState('password')
-    // const navigateTo = useNavigate();
     
-
-    // let storageCondition = localStorage.getItem('Existing-Accounts') === null;
-    // let userAccounts = storageCondition? [] : JSON.parse(localStorage.getItem('Existing-Accounts'));
-
-    // resetForm() {
-    //     console.log('--Form Reset--');
-
-    //     setFirstName('');
-    //     setLastName('');
-    //     setEmail('');
-    //     setPhone('');
-    //     setAddress('');
-    //     setUsername('');
-    //     setPassword('');
-    //     setReEnteredPassword('');
-    //     setPasswordType('password');
-
-    // };
 
     handleClick(e) {
         e.preventDefault();
@@ -69,7 +41,6 @@ export default class RegField extends Component {
     };
     handleSubmit(e) {
         e.preventDefault()
-
         // const { firstNameInput }  = setFirstName()
         // const { lastNameInput } = setLastName()
         // const { emailInput } = setEmail()
@@ -88,78 +59,7 @@ export default class RegField extends Component {
             passWordReEnterInput,
         } = this.state
 
-        // localStorage.setItem('Existing-Accounts', JSON.stringify())
 
-        // function searchUserNames(username) {
-        //     return userAccounts.some(element => {
-        //         console.log(element);
-        //         return element.UserName === username;
-        //     });
-        // };
-        // function searchUserEmails(email) {
-        //     return userAccounts.some(element => {
-        //         console.log(element);
-        //         return element.Email === email;
-        //     });
-        // };
-
-
-        // if( searchUserNames(username) === false && searchUserEmails(email) === false ) {
-
-            
-        //     //Checks that both passwords match
-        //     if( password === reEnteredPassword ) {
-        //         const newUser = {
-        //             FirstName: firstName,
-        //             LastName: lastName,
-        //             ClassList: [],
-        //             Email: email,
-        //             PhoneNumber: phone,
-        //             Address: address,
-        //             UserName: username,
-        //             PassWord: password,
-        //             isAdmin: false,
-        //             UUID: uuidv4(),
-        //             createDate: Date(),
-        //         };
-
-        //         if( localStorage.getItem('Existing-Accounts') === null) {
-
-        //             let userArray = [];
-        //             userArray.push(newUser)
-        //             localStorage.setItem('Existing-Accounts', JSON.stringify(userArray));
-
-        //             resetForm();
-        //             navigateTo('/')
-
-
-        //         } else if ( localStorage.getItem('Existing-Accounts') !== null) {
-
-        //             // localStorage.removeItem('Existing-Accounts')
-        //             userAccounts.push(newUser);
-        //             localStorage.setItem('Existing-Accounts', JSON.stringify(userAccounts));
-
-        //             resetForm();
-        //             navigateTo('/')
-
-        //         } else (
-        //             alert('LocalStorge Error')
-        //         );
-        //     } else if( password !== reEnteredPassword ) {
-        //         alert(`The passwords you entered do not match`)
-        //     } else {
-        //         alert(`Something went wrong with the password verification: ʕ •ᴥ•ʔ`)
-        //     };
-
-        // } else if(searchUserNames(username) === true && searchUserEmails(email) === true ) {
-        //     alert('A user with this information already exists')
-        // } else if( searchUserNames(username) === true ) {
-        //     alert(`Sorry ${username} is unavaiable`)
-        // } else if( searchUserEmails(email) === true ) {
-        //     alert(`${email} is already in use`)
-        // } else {
-        //     alert(`Something went wrong with the username and email verification: ಠ_ಠ`)
-        // };
         fetch('http://localhost:5050/user-reg', {
             method: "POST",
             crossDomain: true,
@@ -179,20 +79,54 @@ export default class RegField extends Component {
                 reEnterPassword: passWordReEnterInput
             }),
         })
-        .then((response) => {
-            if (response.ok) {
-                console.log('Success')
-            }
-            else {
-                console.log("Oopsies")
-            }
-            return response.json()})
+        .then((response) => response.json())
         .then((data) => {
             console.log(data, "userRegister")
+            // Checking to see if email is unique
+            if(data.status === "Email already in use") {
+                alert("Email already in use")
+            }
+            // Checking to see if username is unique
+            if(data.status === "Username already in use") {
+                alert("Username already in use")
+            }
             if(data.status === 'ok') {
                 window.location.href = 'login'
             }
         })
+        .catch(error => {
+            console.log(error)
+        })
+
+        
+        // Checking to see if there is a password
+        if(this.state.passWordInput === null || this.state.passWordInput === "")
+        {
+            return alert("Password is required")
+        }
+        if(this.state.passWordReEnterInput === null || this.state.passWordReEnterInput === "")
+        {
+            return alert("Re-Enter Password is required")
+        }
+
+        // Checking Passwords are the same
+        if(this.state.passWordInput !== this.state.passWordReEnterInput)
+        {
+            return alert("Passwords are not the same")
+        }
+
+        // Checking email is typed
+        if(this.state.emailInput === null || this.state.emailInput === "")
+        {
+            return alert("Email is required")
+        }
+
+        // Checking if username is typed
+        if(this.state.userNameInput === null || this.state.userNameInput === "")
+        {
+            return alert("Username is required")
+        }
+
     };
     render() {
 
@@ -210,7 +144,7 @@ export default class RegField extends Component {
                             <input
                                 type="text" 
                                 id="firstNameInput"
-                                placeholder="First Nane"
+                                placeholder="First Name"
                                 onChange={(e) => this.setState({ firstNameInput: e.target.value })}
                             />
 
@@ -224,9 +158,10 @@ export default class RegField extends Component {
 
 
                             <input
-                                type="text" 
+                                type="email" 
                                 id="emailInput"
                                 placeholder="Email"
+                                required={true}
                                 onChange={(e) => this.setState({ emailInput: e.target.value })}
                             />
 
@@ -274,7 +209,7 @@ export default class RegField extends Component {
                                 onChange={(e) => this.setState({ passWordReEnterInput: e.target.value })}
                             />
                             <div className="regFormButtons">
-                                <button type="Submit">Create User</button>
+                                <button type="submit" onClick={this.handleSubmit}>Create User</button>
                                 <button className='togglePasswordVisability' onClick={this.handleClick}>
                                     { this.state.passwordType==="password"? <FontAwesomeIcon icon={faEyeSlash} /> : <FontAwesomeIcon icon={faEye} /> }
                                 </button>

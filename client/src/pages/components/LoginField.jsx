@@ -25,8 +25,19 @@ export default class LoginField extends Component {
         e.preventDefault();
         
         const { userNameInput, passWordInput, } = this.state
-        console.log(userNameInput, passWordInput)
 
+        fetch('http://localhost:5050/getUsers', {
+            method: "GET"
+        })
+        .then((response) => response.json())
+        .then((data) => {
+            console.log(data, "userRegister")
+            console.log(data[0].isAdmin, "admin")
+            for(let i = 0; i < data.length; i++){
+                console.log(data[i][isAdmin])
+            }
+        })
+        
         fetch('http://localhost:5050/login', {
             method: "POST",
             crossDomain: true,
@@ -46,7 +57,7 @@ export default class LoginField extends Component {
             if(data.status === 'ok') {
                 window.localStorage.setItem("token", data.data)
                 window.localStorage.setItem("loggedIn", true)
-                window.location.href = 'user-info'
+
             }
         })
         // let storageCondition = localStorage.getItem('Existing-Accounts') === null;
