@@ -1,0 +1,104 @@
+body, header, div {
+    margin: 0;
+    padding: 0;
+    border: none;
+}
+
+#coursePageContainer {
+    display: flex;
+    flex-direction: row;
+    
+}
+    #coursesPageNav {
+        background-color: #fff;
+        border-right: 1px solid #DDDDDD;
+    }
+        #navLinks {
+            display: flex; 
+            flex-direction: column;
+
+        }  
+            #navLinks a {
+                border-bottom: 1px solid #DDDDDD;
+                padding: calc(1em + 0.390625vw) 0 0 0;
+                font-size: calc(8px + 0.390625vw);
+            }
+            #navLinks a p {
+                padding: 0 calc(.15em + 0.390625vw) calc(1em + 0.390625vw) calc(.15em + 0.390625vw);
+                margin: 0;
+            }
+    #coursesPageManage {
+        display: flex;
+        justify-content: center;
+    }
+        #coursesComponentContainer {
+            flex-basis: 70%;
+        }
+            #coursesComponentContainer h1 {
+                font-size: calc(24px + 0.390625vw)
+            }
+            #coursesCardContainer {
+                
+            }
+                .courseCards {    
+                    display: flex;
+                    flex-direction: column;
+                    margin: 0 0 calc(2em + 0.390625vw) 0;
+                    border: 1px solid #DDDDDD;
+                    border-radius: calc(30px + 0.390625vw);
+                    background-color: #fff;
+                    align-items: center;
+                }
+                    .courseMainInfoDiv {
+                        width: 80%;
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                    }
+                        .courseHeaderDiv {
+                            display: flex;
+                            border-bottom: 1px solid #DDDDDD;
+                            align-self: flex-start;
+                        }
+                            .courseTitle {
+                                margin: 1em .5em 0 0;
+                                font-size: calc(15px + 0.390625vw);
+                            }
+                            .courseId {
+                                margin: 1em 0 0 .5em;
+                                font-size: calc(15px + 0.390625vw);
+                            }
+                    .courseDescription {
+                        text-align: left;
+                        font-size: calc(12px + 0.390625vw);
+                    }
+                    .moreCourseInfoButton {
+                        width: calc(1% + 0.390625vw);
+                        align-self: flex-start;
+                        border: none;
+                        background-color: inherit;
+                        font-size: calc(12px + 0.390625vw);
+
+                    }
+                        .courseAdditionalInfoDivContainer {
+                            display: none;
+                        }
+                            .courseAdditionalInfoDiv {
+                                display: flex;
+
+                            }
+                                .courseAdditionalInfoDiv h3 {
+                                    padding: 0 calc(1em + 0.390625vw) 0 calc(1em + 0.390625vw);
+                                    font-size: calc(10px + 0.390625vw);
+                                }
+                        .coursesCardButtonDiv {
+                            display: flex;
+                            justify-content: space-around;
+                        }
+                            .coursesCardButtonDiv button {
+                                font-size: calc(12px + 0.390625vw);
+                                background-color: inherit;
+                                margin: 0em 0em 1em 0em;
+                                border: none;
+                                border-radius: .5em;
+                            }
