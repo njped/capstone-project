@@ -30,10 +30,6 @@ const userRegSchema = new Schema({
     type: String, 
     required: true
   },
-  reEnterPassword: {
-    type: String, 
-    required: true
-  },
   isAdmin: {
     type: Boolean, 
     default: false
@@ -48,9 +44,10 @@ const userRegSchema = new Schema({
 );
 
 // Encrypt password before User creation
-userRegSchema.pre('save', async (next) => {
-  const salt = await bcrypt.genSalt()
-  this.password = await bcrypt().hash(this.password, salt);
+userRegSchema.pre('save', async function (next) {
+  console.log(this.password);
+  // const salt = bcrypt.genSalt()
+  this.password = await bcrypt.hash(this.password, 12);
   next()
 })
 

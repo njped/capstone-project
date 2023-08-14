@@ -2,7 +2,7 @@ const { User } = require('../models');
 const { registerToken } = require('../utils/auth')
 
 const registerUser = async (req, res, next) => {
-  const { email, username, password } = req.body
+  const { email, username, password, firstName, lastName, address, phone } = req.body
 
   try {
     // check for existing user
@@ -28,7 +28,7 @@ const registerUser = async (req, res, next) => {
     }
   
     // register new user
-    const user = await User.create({email, username, password})
+    const user = await User.create({email, username, password, firstName, lastName, address, phone})
     console.log('user:', user)
 
     // register JWT
@@ -96,15 +96,15 @@ const getUserById = async (req, res, next) => {
 }
 
 const login = async (req, res, next) => {
-  const { email, password } = req.body;
+  const { username, password } = req.body;
 
-  if (!email || !password) {
-    return res.status(400).send({status: 'error', message: 'Email and password required'})
+  if (!username || !password) {
+    return res.status(400).send({status: 'error', message: 'Username and password required'})
   }
 
   try {
     const user = await User
-      .findOne({ email })
+      .findOne({ username })
       .select({
         __v: 0
       });
