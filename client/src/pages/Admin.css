@@ -1,0 +1,168 @@
+body, header, div {
+    margin: 0;
+    padding: 0;
+    border: none;
+}
+
+#adminPageContainer {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+    #adminPageNav {
+        background-color: #fff;
+        border-right: 1px solid #DDDDDD;
+    }
+        #navLinks {
+            display: flex;
+            flex-direction: column;
+        }
+            #navLinks a {
+                border-bottom: 1px solid #DDDDDD;
+                padding: calc(1em + 0.390625vw) 0 0 0;
+                font-size: calc(8px + 0.390625vw);
+            }
+            #navLinks a p {
+                padding: 0 calc(.15em + 0.390625vw) calc(1em + 0.390625vw) calc(.15em + 0.390625vw);
+                margin: 0;
+            }
+    #adminPageManage {
+        display: flex;
+        justify-content: center;
+        margin: 0 auto;
+    }
+        #adminComponentContainer {
+            flex-basis: 100%;
+        }
+            #accountCardsContainer {
+
+            }
+                .accountInfoCard {
+                    display: flex;
+                    flex-direction: column;
+                    margin: 0 0 calc(2em + 0.390625vw) 0;
+                    border: 1px solid #DDDDDD;
+                    border-radius: calc(30px + 0.390625vw);
+                    background-color: #fff;
+                    align-items: center;
+                }
+                    .accountInfoCardMainDiv {
+                        width: 80%;
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                    }
+                        .accountHeaderInfo {
+                            width: 100%;
+                            display: flex;
+                            flex-direction: column;
+                            align-items: start;
+                        }
+                            .userFullName {
+                                margin: 1em 0 0 0;
+                                font-size: calc(15px + 0.390625vw);
+                            }
+                            .userStringId {
+                                margin: 0 .5em 0 .5em;
+                                font-size: calc(5px + 0.390625vw);
+                                white-space: nowrap;
+                            }
+                        .accountContactInfoContainer {
+                            width: 100%;
+                            display: flex;
+                            flex-direction: column;
+                            align-items: start;
+                            margin: 0 calc(3em + 0.390625vw) 0 calc(3em + 0.390625vw);
+                        }
+                            .accountContactInfoContainer h3 {
+                                white-space: nowrap;
+                                margin: 0 0 0 0;
+                                font-size: calc(10px + 0.390625vw);
+                            }
+                        .accountLoginInfoContainer {
+                            width: 100%;
+                            display: flex;
+                            flex-direction: column;
+                            align-items: start;
+                            margin: 0 calc(3em + 0.390625vw) 0 calc(3em + 0.390625vw);
+                        }
+                            .accountLoginInfoContainer h3 {
+                                white-space: nowrap;
+                                margin: 0 0 0 0;
+                                font-size: calc(10px + 0.390625vw);
+                            }
+                        .accountClassListContainer {
+
+                        }
+                            .accountCourseCards {
+                                display: flex;
+                                flex-direction: column;
+                                margin: 0 0 calc(2em + 0.390625vw) 0;
+                                border: 1px solid #DDDDDD;
+                                border-radius: calc(30px + 0.390625vw);
+                                background-color: #fff;
+                                align-items: center;
+                            }
+            
+                            .accountCourseMainInfoDiv {
+                                width: 80%;
+                                display: flex;
+                                flex-direction: column;
+                                align-items: center;
+                            }
+            
+                            .accountCourseHeaderDiv {
+                                display: flex;
+                                border-bottom: 1px solid #DDDDDD;
+                                align-self: flex-start;
+                            }
+            
+                            .accountCourseTitle {
+                                margin: 1em .5em 0 0;
+                                font-size: calc(15px + 0.390625vw);
+                            }
+            
+                            .accountCourseId {
+                                margin: 1em 0 0 .5em;
+                                font-size: calc(15px + 0.390625vw);
+                            }
+            
+                            .accountCourseDescription {
+                                text-align: left;
+                                font-size: calc(12px + 0.390625vw);
+                            }
+            
+                            .accountMoreCourseInfoButton {
+                                align-self: flex-start;
+                                border: none;
+                                background-color: inherit;
+                                font-size: calc(6px + 0.390625vw);
+            
+                            }
+            
+                            .accountCourseAdditionalInfoDivContainer {
+                                display: none;
+                            }
+            
+                            .accountCourseAdditionalInfoDiv {
+                                display: flex;
+            
+                            }
+            
+                            .accountCourseAdditionalInfoDiv h3 {
+                                padding: 0 calc(1em + 0.390625vw) 0 calc(1em + 0.390625vw);
+                                font-size: calc(10px + 0.390625vw);
+                            }
+            
+                            .accountCoursesCardButtonDiv {
+                                display: flex;
+                                justify-content: space-around;
+                            }
+            
+                            .accountCoursesCardButtonDiv button {
+                                font-size: calc(12px + 0.390625vw);
+                                background-color: inherit;
+                                margin: 0em 0em 1em 0em;
+                                border: none;
+                                border-radius: .5em;
+                            }

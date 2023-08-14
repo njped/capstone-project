@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
-import '../../App.css';
+import '../Admin.css';
+
 
 
 export const AdminManage = () => {
@@ -17,147 +18,232 @@ export const AdminManage = () => {
             }]
             console.log(userEnrolledCourses.type);
             
-            let userAccountsContainer = document.getElementById('userAccountsContainer')
-            // console.log(`${user.FirstName} ${user.LastName}`);
-            // console.log(user);
+            let accountCardsContainer = document.getElementById('accountCardsContainer')
 
             // Create Unique Account Info Card
             let accountInfoCard = document.createElement('div');
-            accountInfoCard.setAttribute('id', `${user.UUID}`);
+            accountInfoCard.setAttribute('id', `accountInfoCard-${user.UUID}`);
             accountInfoCard.setAttribute('class', 'accountInfoCard');
 
-            let userFullName = document.createElement('h2');
-            userFullName.innerText = `${user.FirstName} ${user.LastName}: ${user.UUID}`
-            accountInfoCard.appendChild(userFullName);
-
-            let userEmail = document.createElement('h3');
-            userEmail.setAttribute('class', 'userEmail');
-            userEmail.innerText = `${user.Email}`;
-            accountInfoCard.appendChild(userEmail);
-
-            let userPhone = document.createElement('h3');
-            userPhone.setAttribute('class', 'userPhone');
-            userPhone.innerText = `${user.PhoneNumber}`;
-            accountInfoCard.appendChild(userPhone);
-
-            let userAddress = document.createElement('h3');
-            userAddress.setAttribute('class', 'userAddress');
-            userAddress.innerText = `${user.Address}`;
-            accountInfoCard.appendChild(userAddress);
-            
-            let userUserName = document.createElement('h3');
-            userUserName.setAttribute('class', 'userUserName');
-            userUserName.innerText = `${user.UserName}`;
-            accountInfoCard.appendChild(userUserName);
-
-            let userPassWord = document.createElement('h3');
-            userPassWord.setAttribute('class', 'userPassWord');
-            userPassWord.innerText = `${user.PassWord}`;
-            accountInfoCard.appendChild(userPassWord);
-
-            let userIsAdmin = document.createElement('h3');
-            userIsAdmin.setAttribute('class', 'userIsAdmin');
-            userIsAdmin.innerText = `${user.isAdmin}`;
-            accountInfoCard.appendChild(userIsAdmin);
-
-            let adminCheckBox = document.createElement('input');
-            adminCheckBox.setAttribute('id', `adminCheckbox-db.userId`)
-            adminCheckBox.setAttribute('class', 'adminCheckbox');
-            adminCheckBox.setAttribute('type', 'checkbox');
-            function isAdminChecker(adminValue) {
-                if (adminValue === true) {
-                    adminCheckBox.setAttribute('checked', ``)
-                } else {
-                    null
-                }
-            };
-            isAdminChecker(user.isAdmin);
-            userIsAdmin.appendChild(adminCheckBox);
+                let accountInfoCardMainDiv = document.createElement('div');
+                accountInfoCardMainDiv.setAttribute('id', `accountInfoCardMainDiv-`);
+                accountInfoCardMainDiv.setAttribute('class', 'accountInfoCardMainDiv');
 
 
-            let userClassListContainer = document.createElement('div');
-            userClassListContainer.setAttribute('id', `userClassListContainer-db.userId`)
-            userClassListContainer.setAttribute('class', 'userClassListContainer');
+                let accountHeaderInfo = document.createElement('div');
+                accountHeaderInfo.setAttribute('id', `accountHeaderInfo-${user.UUID}`);
+                accountHeaderInfo.setAttribute('class', 'accountHeaderInfo')
+
+                    let userFullName = document.createElement('h3');
+                    userFullName.setAttribute('class', `userFullName`)
+                    userFullName.innerText = `${user.FirstName} ${user.LastName}: `
+                    accountHeaderInfo.appendChild(userFullName);
+
+                    let userStringId = document.createElement('h3');
+                    userStringId.setAttribute('class', 'userStringId');
+                    userStringId.innerText = `${user.UUID}`;
+                    accountHeaderInfo.appendChild(userStringId);
+
+                accountInfoCardMainDiv.appendChild(accountHeaderInfo)
+
+                let accountContactInfoContainer = document.createElement('div');
+                accountContactInfoContainer.setAttribute('id', `accountContactInfoContainer-${user.UUID}`)
+                accountContactInfoContainer.setAttribute('class', 'accountContactInfoContainer')
+
+                    let userEmail = document.createElement('h3');
+                    userEmail.setAttribute('class', 'userEmail');
+                    userEmail.innerText = `Email: ${user.Email}`;
+                    accountContactInfoContainer.appendChild(userEmail);
+
+                    let userPhone = document.createElement('h3');
+                    userPhone.setAttribute('class', 'userPhone');
+                    userPhone.innerText = `CellPhone: ${user.PhoneNumber}`;
+                    accountContactInfoContainer.appendChild(userPhone);
+
+                    let userAddress = document.createElement('h3');
+                    userAddress.setAttribute('class', 'userAddress');
+                    userAddress.innerText = `Address: ${user.Address}`;
+                    accountContactInfoContainer.appendChild(userAddress);
+
+                accountInfoCardMainDiv.appendChild(accountContactInfoContainer);
+                
+                let accountLoginInfoContainer = document.createElement('div');
+                accountLoginInfoContainer.setAttribute('id', `accountLoginInfoContainer-${user.UUID}`);
+                accountLoginInfoContainer.setAttribute('class', 'accountLoginInfoContainer');
+
+                    let userUserName = document.createElement('h3');
+                    userUserName.setAttribute('class', 'userUserName');
+                    userUserName.innerText = `Username: ${user.UserName}`;
+                    accountLoginInfoContainer.appendChild(userUserName);
+
+                    let userPassWord = document.createElement('h3');
+                    userPassWord.setAttribute('class', 'userPassWord');
+                    userPassWord.innerText = `Password: ${user.PassWord}`;
+                    accountLoginInfoContainer.appendChild(userPassWord);
+
+                    let userIsAdmin = document.createElement('h3');
+                    userIsAdmin.setAttribute('class', 'userIsAdmin');
+                    userIsAdmin.innerText = `Type: ${user.isAdmin}`;
+                    accountLoginInfoContainer.appendChild(userIsAdmin);
+
+                    let adminCheckBox = document.createElement('input');
+                    adminCheckBox.setAttribute('id', `adminCheckbox-${user.UUID}`)
+                    adminCheckBox.setAttribute('class', 'adminCheckbox');
+                    adminCheckBox.setAttribute('type', 'checkbox');
+                    function isAdminChecker(adminValue) {
+                        if (adminValue === true) {
+                            adminCheckBox.setAttribute('checked', ``)
+                        } else {
+                            null
+                        }
+                    };
+                    isAdminChecker(user.isAdmin);
+                    userIsAdmin.appendChild(adminCheckBox);
+                    accountLoginInfoContainer.appendChild(userIsAdmin);
+
+                accountInfoCardMainDiv.appendChild(accountLoginInfoContainer)
+
+
+
+            let accountClassListContainer = document.createElement('div');
+            accountClassListContainer.setAttribute('id', `accountClassListContainer-${user.UUID}`)
+            accountClassListContainer.setAttribute('class', 'accountClassListContainer');
             
             // Renders User's Enrolled Courses
             userEnrolledCourses.forEach( classItem => {
                 console.log(classItem);
 
-                let courseCardUser = document.createElement('div');
-                courseCardUser.setAttribute('id', `courseCardUser-`)
-                courseCardUser.setAttribute('class', 'courseCardsUser');
+                let accountCourseCard = document.createElement('div');
+                accountCourseCard.setAttribute('id', `accountCourseCard-${user.UUID}`)
+                accountCourseCard.setAttribute('class', 'courseCards');
 
-                let courseTitle = document.createElement('h3');
-                courseTitle.setAttribute('id', `db.courseTitleUserUser-`);
-                courseTitle.setAttribute('class', 'courseTitleUserUser');
-                courseTitle.innerText = `Course Title: `;
-                courseCardUser.appendChild(courseTitle);
+                    let accountCourseMainInfoDiv = document.createElement('div');
+                    accountCourseMainInfoDiv.setAttribute('id', `accountCourseMainInfoDiv-${user.UUID}`)
+                    accountCourseMainInfoDiv.setAttribute('class', 'accountCourseMainInfoDiv');
 
-                let classroomNumber = document.createElement('h3');
-                classroomNumber.setAttribute('id', `db.classroomNumberUser-`);
-                classroomNumber.setAttribute('class', 'classroomNumberUser');
-                classroomNumber.innerText = `Classroom Number: `;
-                courseCardUser.appendChild(classroomNumber);
+                        let accountCourseHeaderDiv = document.createElement('div');
+                        accountCourseHeaderDiv.setAttribute('class', 'accountCourseHeaderDiv');
 
-                let creditHours = document.createElement('h3');
-                creditHours.setAttribute('id', `db.creditHoursUser-`);
-                creditHours.setAttribute('class', 'creditHoursUser');
-                creditHours.innerText = `Credit Hours: `;
-                courseCardUser.appendChild(creditHours);
+                            let accountCourseTitle = document.createElement('h3');
+                            accountCourseTitle.setAttribute('id', `db.accountCourseTitle-`);
+                            accountCourseTitle.setAttribute('class', 'accountCourseTitle');
+                            accountCourseTitle.innerText = `ClassTitle: `;
+                            accountCourseHeaderDiv.appendChild(accountCourseTitle);
+                            
+                            let accountCourseId = document.createElement('h3');
+                            accountCourseId.setAttribute('id', `db.accountCourseId-`);
+                            accountCourseId.setAttribute('class', 'accountCourseId');
+                            accountCourseId.innerText = `Course ID: `;
+                            accountCourseHeaderDiv.appendChild(accountCourseId);
 
-                let tuitionCost = document.createElement('h3');
-                tuitionCost.setAttribute('id', `db.tuitionCostUser-`);
-                tuitionCost.setAttribute('class', 'tuitionCostUser');
-                tuitionCost.innerText = `Tuition Cost: `;
-                courseCardUser.appendChild(tuitionCost);
+                        accountCourseMainInfoDiv.appendChild(accountCourseHeaderDiv);
 
-                let courseDescription = document.createElement('p');
-                courseDescription.setAttribute('id', `db.courseDescriptionUser-`);
-                courseDescription.setAttribute('class', 'courseDescriptionUser');
-                courseDescription.innerText = `Description: `;
-                courseCardUser.appendChild(courseDescription);
+                            let accountMoreCourseInfoButton = document.createElement('button');
+                            accountMoreCourseInfoButton.setAttribute('id', `${user.UUID}`);
+                            accountMoreCourseInfoButton.setAttribute('class', 'accountMoreCourseInfoButton');
+                            accountMoreCourseInfoButton.setAttribute('type', 'button');
+                            accountMoreCourseInfoButton.innerText = 'Show More ▾';
+                            accountCourseMainInfoDiv.appendChild(accountMoreCourseInfoButton);
 
-                let courseId = document.createElement('h3');
-                courseId.setAttribute('id', `db.courseIdUser-`);
-                courseId.setAttribute('class', 'courseIdUser');
-                courseId.innerText = `ID: `;
-                courseCardUser.appendChild(courseId);
+                        accountCourseCard.appendChild(accountCourseMainInfoDiv);
 
-                let courseCapacity = document.createElement('h3');
-                courseCapacity.setAttribute('id', `db.courseCapacityUser-`);
-                courseCapacity.setAttribute('class', 'courceCapacityUser');
-                courseCapacity.innerText = `Capacity: `;
-                courseCardUser.appendChild(courseCapacity);
+                        let accountCourseAdditionalInfoDivContainer = document.createElement("div");
+                        accountCourseAdditionalInfoDivContainer.setAttribute('id', `accountCourseAdditionalInfoDivContainer-${user.UUID}`);
+                        accountCourseAdditionalInfoDivContainer.setAttribute('class', 'accountCourseAdditionalInfoDivContainer');
 
-                let cardButton = document.createElement('button');
-                cardButton.setAttribute('id', `user.id`);
-                cardButton.setAttribute('class', 'cardButtonUser');
-                cardButton.setAttribute('type', 'submit');
-                cardButton.innerText = `Remove`;
-                courseCardUser.appendChild(cardButton);
+                            let accountCourseAdditionalInfoDiv = document.createElement('div');
+                            accountCourseAdditionalInfoDiv.setAttribute('id', `accountCourseAdditionalInfoDiv-${user.UUID}`)
+                            accountCourseAdditionalInfoDiv.setAttribute('class', 'accountCourseAdditionalInfoDiv');
 
-                console.log(courseCardUser);
+                                let accountClassroomNumber = document.createElement('h3');
+                                accountClassroomNumber.setAttribute('id', `db.accountClassroomNumber-`);
+                                accountClassroomNumber.setAttribute('class', 'accountClassroomNumber');
+                                accountClassroomNumber.innerText = `Classroom Number: `;
+                                accountCourseAdditionalInfoDiv.appendChild(accountClassroomNumber);
 
-                userClassListContainer.appendChild(courseCardUser)
+                                let accountCreditHours = document.createElement('h3');
+                                accountCreditHours.setAttribute('id', `db.accountCreditHours-`);
+                                accountCreditHours.setAttribute('class', 'accountCreditHours');
+                                accountCreditHours.innerText = `Credit Hours: `;
+                                accountCourseAdditionalInfoDiv.appendChild(accountCreditHours);
+
+                                let accountCourseTuitionCost = document.createElement('h3');
+                                accountCourseTuitionCost.setAttribute('id', `db.accountCourseTuitionCost-`);
+                                accountCourseTuitionCost.setAttribute('class', 'accountCourseTuitionCost');
+                                accountCourseTuitionCost.innerText = `Course Cost:`;
+                                accountCourseAdditionalInfoDiv.appendChild(accountCourseTuitionCost);
+
+                                let accountCourseCapacity = document.createElement('h3');
+                                accountCourseCapacity.setAttribute('id', `db.accountCourseCapacity-`);
+                                accountCourseCapacity.setAttribute('class', 'courceCapacity');
+                                accountCourseCapacity.innerText = `Class Size: `;
+                                accountCourseAdditionalInfoDiv.appendChild(accountCourseCapacity);
+
+                            accountCourseAdditionalInfoDivContainer.appendChild(accountCourseAdditionalInfoDiv)
+                        
+                        accountCourseCard.appendChild(accountCourseAdditionalInfoDivContainer);
+
+                        let accountCoursesCardButtonDiv = document.createElement('div');
+                        accountCoursesCardButtonDiv.setAttribute('id', `accountCoursesCardButtonDiv-${user.UUID}`)
+                        accountCoursesCardButtonDiv.setAttribute('class', 'accountCoursesCardButtonDiv');
+
+                            let accountCardButton = document.createElement('button');
+                            accountCardButton.setAttribute('id', ``);
+                            accountCardButton.setAttribute('class', 'accountCardButton');
+                            accountCardButton.setAttribute('type', 'submit');
+                            accountCardButton.innerText = `Remove`;
+
+                        accountCoursesCardButtonDiv.appendChild(accountCardButton);
+
+                    accountCourseCard.appendChild(accountCoursesCardButtonDiv);
+
+                accountClassListContainer.appendChild(accountCourseCard);
                 
             });        
 
-            accountInfoCard.appendChild(userClassListContainer);
-            userAccountsContainer.appendChild(accountInfoCard);
+            accountInfoCardMainDiv.appendChild(accountClassListContainer);
+            accountInfoCard.appendChild(accountInfoCardMainDiv)
+            accountCardsContainer.appendChild(accountInfoCard);
 
 
         }); 
-    };
+    }; 
+
+    document.addEventListener('click', (event) => {
+        console.log(event.target.tagName);
+        let isButton = event.target.tagName
+        if (isButton === 'BUTTON') {
+            if (event.target.type === "submit") {
+                console.log("This is a Submit Button");
+            } else if (event.target.type === 'button') {
+                console.log(`accountCourseAdditionalInfoDivContainer-${event.target.id}`);
+                let hiddenContent = document.getElementById(`accountCourseAdditionalInfoDivContainer-${event.target.id}`)
+                if (hiddenContent.style.display == '' || hiddenContent.style.display === null) {
+                    hiddenContent.style.display = "flex"
+                    event.target.innerText = 'Show Less ▴';
+                } else {
+                    hiddenContent.style.display = '';
+                    event.target.innerText = 'Show More ▾';
+                }
+            } else {
+                console.log(`This isnt a button`);
+            }
+        } else {
+            console.log(`This isnt a button`);
+        }
+    });
     
     useEffect(() => {
         RenderUserCards();
     }, []);
 
     return (
-        <>  
-            <h1>Users:</h1>
-            <div id="userAccountsContainer" >
+        <> 
+            <div id="adminComponentContainer">
+                <h1>Admin Page</h1>
+                <div id="accountCardsContainer" >
 
+                </div>
             </div>
         </>
     );

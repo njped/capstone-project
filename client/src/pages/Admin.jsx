@@ -1,15 +1,20 @@
 import React from "react";
 import { NavBar } from './components/NavBar.jsx'
 import { AdminManage } from "./components/AdminManage.jsx";
-import '../App.css';
+import './Admin.css';
 
 export function Admin() {
 
     return(
-        <>
-            <NavBar/>
-            <h1>Admin Page</h1>
-            <AdminManage/>
+        <>  
+            <div id="adminPageContainer">
+                <div id="adminPageNav">
+                    <NavBar/>
+                </div>
+                <div id="adminPageManage">
+                    <AdminManage/>
+                </div>
+            </div>
         </>
     )
 }

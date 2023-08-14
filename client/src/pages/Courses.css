@@ -5,9 +5,9 @@ body, header, div {
 }
 
 #coursePageContainer {
+    width: 100%;
     display: flex;
     flex-direction: row;
-    
 }
     #coursesPageNav {
         background-color: #fff;
@@ -16,7 +16,6 @@ body, header, div {
         #navLinks {
             display: flex; 
             flex-direction: column;
-
         }  
             #navLinks a {
                 border-bottom: 1px solid #DDDDDD;
@@ -30,6 +29,7 @@ body, header, div {
     #coursesPageManage {
         display: flex;
         justify-content: center;
+        margin: 0 auto;
     }
         #coursesComponentContainer {
             flex-basis: 70%;
