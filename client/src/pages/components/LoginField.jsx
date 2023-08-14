@@ -125,7 +125,7 @@ export default function LoginField() {
                             placeholder="Password"
                             required={true}
                             name="email"
-                            value={email}
+                            value={password}
                             onChange={handleOnChange}
                         />
                         <button type="submit">Go</button>

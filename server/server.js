@@ -26,7 +26,7 @@ db.once('open', () => {
 
 app.use(
   cors({
-    origin: ['http://localhost/'],
+    origin: ['https://localhost/5050'],
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     credentials: true,
   })

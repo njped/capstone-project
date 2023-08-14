@@ -5,7 +5,8 @@ const dbURL = process.env.DB_URL || 'mongodb://localhost/capstone'
 
 mongoose
   .connect(dbURL, {
-    useNewUrlParser: true
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
   })
   .then(() => {
     console.log('MongoDB connected successfully')

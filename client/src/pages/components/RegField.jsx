@@ -76,7 +76,7 @@ export default function RegField() {
 
         try {
             const { data } = await axios.post(
-                "http://localhost:5050/user-reg",
+                "http://localhost:5050/api/user",
                 {
                     ...inputValue,
                 },
@@ -96,9 +96,14 @@ export default function RegField() {
         }
         setInputValue({
             ...inputValue,
+            firstName: "",
+            lastName: "",
             email: "",
-            password: "",
+            phone: "",
+            address: "",
             username: "",
+            password: "",
+            reEnterPassword: "",
         });
 
         // fetch('http://localhost:5050/user-reg', {
