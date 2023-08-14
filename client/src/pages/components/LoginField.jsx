@@ -1,27 +1,19 @@
-import React, { Component } from "react";
-// import { useState } from "react";
-// import { useNavigate } from "react-router-dom";
+import React from "react";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 
 
 
 
-export default class LoginField extends Component {
-    // const [ username, setUsername ] = useState('')
-    // const [ password, setPassword ] = useState('')
+export default function LoginField () {
+    const [ username, setUsername ] = useState('')
+    const [ password, setPassword ] = useState('')
+    const navigateTo = useNavigate();
     
-    // const navigateTo = useNavigate();
-    constructor(props){
-        super(props)
-        this.state = {
-            userNameInput: "", 
-            passWordInput: "", 
-        };
-        this.handleSubmit = this.handleSubmit.bind(this)
-    }
 
 
-    handleSubmit(e) {
+    function handleSubmit(e) {
         e.preventDefault();
         
         const { userNameInput, passWordInput, } = this.state
@@ -91,11 +83,10 @@ export default class LoginField extends Component {
         // };
     };
 
-    render() {
     return(
         <>
             <div id="loginFormContainer">
-                <form id="loginForm" onSubmit={this.handleSubmit}>
+                <form id="loginForm" onSubmit={handleSubmit}>
                     <div className="formHeader">
                         <h1>Login</h1>
                     </div>
@@ -106,14 +97,14 @@ export default class LoginField extends Component {
                             placeholder="Username"
                             required={true}
                             autoCapitalize="off"
-                            onChange={(e) => this.setState({ userNameInput: e.target.value })}
+                            onChange={(e) => setUsername({ userNameInput: e.target.value })}
                         />
                         <input
                             type="password"
                             id="passWordInput"
                             placeholder="Password"
                             required={true}
-                            onChange={(e) => this.setState({ passWordInput: e.target.value })}
+                            onChange={(e) => setPassword({ passWordInput: e.target.value })}
                         />
                         <button type="submit">Go</button>
                     </div>
@@ -124,5 +115,5 @@ export default class LoginField extends Component {
             </div>
 
         </>
-    )};
+    );
 };

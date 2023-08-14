@@ -9,37 +9,28 @@ import { faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 
 
 
-export default class RegField extends Component {
-    constructor(props){
-        super(props)
-        this.state = {
-            firstNameInput: "", 
-            lastNameInput: "", 
-            emailInput: "", 
-            phoneNumberInput: "", 
-            addressInput: "", 
-            userNameInput: "", 
-            passWordInput: "", 
-            passWordReEnterInput: "", 
-            passwordType: "password"
-        };
-        this.handleClick = this.handleClick.bind(this)
-        this.handleSubmit = this.handleSubmit.bind(this)
-    }
+export default function RegField () {
+    const [firstName, setFirstName] = useState('')
+    const [lastName, setLastName] = useState('')
+    const [email, setEmail] = useState('')
+    const [phone, setPhone] = useState('')
+    const [address, setAddress] = useState('')
+    const [username, setUsername] = useState('')
+    const [password, setPassword] = useState('')
+    const [reEnterPassword, setReEnteredPassword] = useState('')
+    const [passwordType, setPasswordType] = useState('')
     
 
-    handleClick(e) {
+    function handleClick(e) {
         e.preventDefault();
 
-        if(this.state.passwordType === 'password') {
-            this.setState({passwordType: 'text'});
-            // setPasswordType('text');
+        if(passwordType === 'password') {
+            setPasswordType('text');
         } else {
-            this.setState({passwordType: 'password'});
-            // setPasswordType('password');
+            setPasswordType('password');
         };
     };
-    handleSubmit(e) {
+    function handleSubmit(e) {
         e.preventDefault()
         // const { firstNameInput }  = setFirstName()
         // const { lastNameInput } = setLastName()
@@ -50,39 +41,30 @@ export default class RegField extends Component {
         // const { passWordInput } = setPassword()
         // const { passWordReEnterInput } = setReEnteredPassword()
 
-        const {firstNameInput, 
-            lastNameInput, 
-            emailInput, 
-            phoneNumberInput, 
-            addressInput, userNameInput, 
-            passWordInput, 
-            passWordReEnterInput,
-        } = this.state
-
         // Checking to see if there is a password
-        if(this.state.passWordInput === null || this.state.passWordInput === "")
+        if(password === null || password === "")
         {
             return alert("Password is required")
         }
-        if(this.state.passWordReEnterInput === null || this.state.passWordReEnterInput === "")
+        if(reEnterPassword === null || reEnterPassword === "")
         {
             return alert("Re-Enter Password is required")
         }
 
         // Checking Passwords are the same
-        if(this.state.passWordInput !== this.state.passWordReEnterInput)
+        if(passWordInput !== reEnterPassword)
         {
             return alert("Passwords are not the same")
         }
 
         // Checking email is typed
-        if(this.state.emailInput === null || this.state.emailInput === "")
+        if(email === null || email === "")
         {
             return alert("Email is required")
         }
 
         // Checking if username is typed
-        if(this.state.userNameInput === null || this.state.userNameInput === "")
+        if(username === null || username === "")
         {
             return alert("Username is required")
         }
@@ -126,8 +108,6 @@ export default class RegField extends Component {
         })
 
     };
-    render() {
-
     
         return (
         <>
@@ -143,7 +123,7 @@ export default class RegField extends Component {
                                 type="text" 
                                 id="firstNameInput"
                                 placeholder="First Name"
-                                onChange={(e) => this.setState({ firstNameInput: e.target.value })}
+                                onChange={(e) => setFirstName({ firstNameInput: e.target.value })}
                             />
 
 
@@ -151,7 +131,7 @@ export default class RegField extends Component {
                                 type="text" 
                                 id="lastNameInput"
                                 placeholder="Last Name"
-                                onChange={(e) => this.setState({ lastNameInput: e.target.value })}
+                                onChange={(e) => setLastName({ lastNameInput: e.target.value })}
                             />
 
 
@@ -160,7 +140,7 @@ export default class RegField extends Component {
                                 id="emailInput"
                                 placeholder="Email"
                                 required={true}
-                                onChange={(e) => this.setState({ emailInput: e.target.value })}
+                                onChange={(e) => setEmail({ emailInput: e.target.value })}
                             />
 
 
@@ -169,7 +149,7 @@ export default class RegField extends Component {
                                 id="phoneNumberInput"
                                 pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
                                 placeholder="Ex: 801-000-000"
-                                onChange={(e) => this.setState({ phoneNumberInput: e.target.value })}
+                                onChange={(e) => setPhone({ phoneNumberInput: e.target.value })}
                             />
 
 
@@ -177,16 +157,15 @@ export default class RegField extends Component {
                                 type="text" 
                                 id="addressInput"
                                 placeholder="Address"
-                                onChange={(e) => this.setState({ addressInput: e.target.value })}
+                                onChange={(e) => setAddress({ addressInput: e.target.value })}
                             />
-
 
                             <input
                                 type="text" 
                                 id="userNameInput"
                                 placeholder="Username"
                                 required={true}
-                                onChange={(e) => this.setState({ userNameInput: e.target.value })}
+                                onChange={(e) => setUsername({ userNameInput: e.target.value })}
                             />
 
 
@@ -195,7 +174,7 @@ export default class RegField extends Component {
                                 id="passWordInput"
                                 placeholder="Password"
                                 required={true}
-                                onChange={(e) => this.setState({ passWordInput: e.target.value })}
+                                onChange={(e) => setPassword({ passWordInput: e.target.value })}
                             />
 
 
@@ -204,12 +183,12 @@ export default class RegField extends Component {
                                 id="passWordReEnterInput"
                                 placeholder="Reenter Password"
                                 required={true}
-                                onChange={(e) => this.setState({ passWordReEnterInput: e.target.value })}
+                                onChange={(e) => setReEnteredPassword({ passWordReEnterInput: e.target.value })}
                             />
                             <div className="regFormButtons">
-                                <button type="submit" onClick={this.handleSubmit}>Create User</button>
-                                <button className='togglePasswordVisability' onClick={this.handleClick}>
-                                    { this.state.passwordType==="password"? <FontAwesomeIcon icon={faEyeSlash} /> : <FontAwesomeIcon icon={faEye} /> }
+                                <button type="submit" onClick={handleSubmit}>Create User</button>
+                                <button className='togglePasswordVisability' onClick={handleClick}>
+                                    { passwordType==="password"? <FontAwesomeIcon icon={faEyeSlash} /> : <FontAwesomeIcon icon={faEye} /> }
                                 </button>
                             </div>
                         </div>
@@ -220,5 +199,5 @@ export default class RegField extends Component {
                 </div>
             </div>  
         </>
-    )}
+    )
 }
