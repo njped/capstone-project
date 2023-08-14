@@ -3,12 +3,12 @@ const uri = process.env.DB_URL || 'mongodb://localhost/capstone'
 const mongoose = require('mongoose')
 const express = require("express");
 const cors = require('cors')
+const cookieParser = require("cookie-parser");
 const path = require("path");
 const db = require('./db/connection.js')
 const routes = require('./routes')
 require('dotenv').config()
 // const bcrypt = require('bcryptjs')
-// const cookieParser = require("cookie-parser");
 // const jwt = require('jsonwebtoken')
 // const passport = require('passport')
 // const session = require('express-session')
@@ -26,15 +26,17 @@ db.once('open', () => {
 
 app.use(
   cors({
-    origin: ['https://localhost/5050'],
+    origin: ['http://localhost:5173'],
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     credentials: true,
   })
 );
+
 app.use(express.json())
 app.use(express.urlencoded({extended: false}))
 app.use(routes)
-// app.use(cookieParser())
+app.use(cookieParser())
+
 // app.use(
 //   session({
 //     secret: process.env.SESSION_SECRET,

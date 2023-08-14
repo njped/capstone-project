@@ -4,10 +4,10 @@ import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import axios from 'axios'
 import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye } from '@fortawesome/free-solid-svg-icons';
 import { faEyeSlash } from '@fortawesome/free-solid-svg-icons';
-
 
 
 export default function RegField() {
@@ -50,46 +50,58 @@ export default function RegField() {
     };
     async function handleSubmit(e) {
         e.preventDefault()
+        
+        // Checking email is typed
+        if (email === null || email === "") {
+            return toast.error('Email is required', {
+                position: "bottom-left",
+            });
+        }
+        
+        // Checking if username is typed
+        if (username === null || username === "") {
+            return toast.error('Username is required', {
+                position: "bottom-left",
+            });
+        }
 
         // Checking to see if there is a password
         if (password === null || password === "") {
-            return alert("Password is required")
+            return toast.error('Password is required', {
+                position: "bottom-left",
+            });
         }
         if (reEnterPassword === null || reEnterPassword === "") {
-            return alert("Re-Enter Password is required")
+            return toast.error('Re-Enter Password is required', {
+                position: "bottom-left",
+            });
         }
-
+        
         // Checking Passwords are the same
         if (password !== reEnterPassword) {
-            return alert("Passwords are not the same")
+            return toast.error('Passwords are not the same', {
+                position: "bottom-left",
+            });
         }
-
-        // Checking email is typed
-        if (email === null || email === "") {
-            return alert("Email is required")
-        }
-
-        // Checking if username is typed
-        if (username === null || username === "") {
-            return alert("Username is required")
-        }
+        
 
         try {
             const { data } = await axios.post(
-                "http://localhost:5050/api/user",
+                "http://localhost:5050/api/user/signup",
                 {
-                    ...inputValue,
+                    ...inputValue
                 },
                 { withCredentials: true }
             );
-            const { success, message } = data;
-            if (success) {
-                handleSuccess(message);
+            console.log(data)
+            const { status, message } = data;
+            if (status === 'success') {
+                handleSuccess(message)
                 setTimeout(() => {
                     navigate("/login");
                 }, 1000);
             } else {
-                handleError(message);
+                handleError(message)
             }
         } catch (error) {
             console.log(error);
@@ -105,44 +117,6 @@ export default function RegField() {
             password: "",
             reEnterPassword: "",
         });
-
-        // fetch('http://localhost:5050/user-reg', {
-        //     method: "POST",
-        //     crossDomain: true,
-        //     headers: {
-        //         "Content-Type": "application/json",
-        //         Accept: "application/json",
-        //         "Access-Control-Allow-Origin": "*",
-        //     },
-        //     body: JSON.stringify({
-        //         firstName: firstNameInput,
-        //         lastName: lastNameInput,
-        //         email: emailInput,
-        //         phone: phoneNumberInput,
-        //         address: addressInput,
-        //         username: userNameInput,
-        //         password: passWordInput,
-        //         reEnterPassword: passWordReEnterInput
-        //     }),
-        // })
-        //     .then((response) => response.json())
-        //     .then((data) => {
-        //         console.log(data, "userRegister")
-        //         // Checking to see if email is unique
-        //         if (data.status === "Email already in use") {
-        //             alert("Email already in use")
-        //         }
-        //         // Checking to see if username is unique
-        //         if (data.status === "Username already in use") {
-        //             alert("Username already in use")
-        //         }
-        //         if (data.status === 'ok') {
-        //             window.location.href = 'login'
-        //         }
-        //     })
-        //     .catch(error => {
-        //         console.log(error)
-        //     })
 
     };
 
@@ -181,7 +155,7 @@ export default function RegField() {
                                 type="email"
                                 id="emailInput"
                                 placeholder="Email"
-                                required={true}
+                                // required={true}
                                 value={email}
                                 name="email"
                                 onChange={handleOnChange}
@@ -213,7 +187,7 @@ export default function RegField() {
                                 type="text"
                                 id="userNameInput"
                                 placeholder="Username"
-                                required={true}
+                                // required={true}
                                 value={username}
                                 name="username"
                                 onChange={handleOnChange}
@@ -224,7 +198,7 @@ export default function RegField() {
                                 type={passwordType}
                                 id="passWordInput"
                                 placeholder="Password"
-                                required={true}
+                                // required={true}
                                 value={password}
                                 name="password"
                                 onChange={handleOnChange}
@@ -235,7 +209,7 @@ export default function RegField() {
                                 type={passwordType}
                                 id="passWordReEnterInput"
                                 placeholder="Reenter Password"
-                                required={true}
+                                // required={true}
                                 value={reEnterPassword}
                                 name="reEnterPassword"
                                 onChange={handleOnChange}
@@ -251,8 +225,8 @@ export default function RegField() {
                             <Link to='/'>User Login</Link>
                         </div>
                     </form>
-                    <ToastContainer />
                 </div>
+                <ToastContainer />
             </div>
         </>
     )

@@ -4,14 +4,13 @@ import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
-
-
+import 'react-toastify/dist/ReactToastify.css'
 
 
 export default function LoginField() {
-    const navigateTo = useNavigate();
+    const navigate = useNavigate();
     const [inputValue, setInputValue] = useState({
-        email: "",
+        username: "",
         password: "",
     });
     const { username, password } = inputValue;
@@ -37,19 +36,28 @@ export default function LoginField() {
         e.preventDefault();
         try {
             const { data } = await axios.post(
-                "http://localhost:5050/login",
+                "http://localhost:5050/api/user/login",
                 {
                     ...inputValue,
                 },
                 { withCredentials: true }
             );
             console.log(data);
-            const { success, message } = data;
-            if (success) {
-                handleSuccess(message);
-                setTimeout(() => {
-                    navigate("/");
-                }, 1000);
+            const { status, message } = data;
+            if (status === 'success') {
+                if(data.user.isAdmin === true){
+                    handleSuccess(message)
+                    setTimeout(() => {
+                        navigate("/admin");
+                    }, 2000);
+                }
+                else {
+                    handleSuccess(message)
+                    setTimeout(() => {
+                        navigate("/home");
+                    }, 2000);
+                }
+
             } else {
                 handleError(message);
             }
@@ -61,42 +69,6 @@ export default function LoginField() {
             username: "",
             password: "",
         });
-
-
-    //     fetch('http://localhost:5050/getUsers', {
-    //         method: "GET"
-    //     })
-    //         .then((response) => response.json())
-    //         .then((data) => {
-    //             console.log(data, "userRegister")
-    //             console.log(data[0].isAdmin, "admin")
-    //             for (let i = 0; i < data.length; i++) {
-    //                 console.log(data[i][isAdmin])
-    //             }
-    //         })
-
-    //     fetch('http://localhost:5050/login', {
-    //         method: "POST",
-    //         crossDomain: true,
-    //         headers: {
-    //             "Content-Type": "application/json",
-    //             Accept: "application/json",
-    //             "Access-Control-Allow-Origin": "*",
-    //         },
-    //         body: JSON.stringify({
-    //             username: userNameInput,
-    //             password: passWordInput,
-    //         }),
-    //     })
-    //         .then((response) => response.json())
-    //         .then((data) => {
-    //             console.log(data, "userRegister")
-    //             if (data.status === 'ok') {
-    //                 window.localStorage.setItem("token", data.data)
-    //                 window.localStorage.setItem("loggedIn", true)
-
-    //             }
-    //         })
     };
 
     return (
@@ -124,7 +96,7 @@ export default function LoginField() {
                             id="passWordInput"
                             placeholder="Password"
                             required={true}
-                            name="email"
+                            name="password"
                             value={password}
                             onChange={handleOnChange}
                         />

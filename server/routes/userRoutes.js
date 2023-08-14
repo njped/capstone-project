@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const { registerUser, getUsers, getUserById, login } = require('../controllers/UserController');
+const { authMiddleware } = require('../utils/auth')
 
 // router
 //   .route('/')
@@ -12,8 +13,9 @@ const { registerUser, getUsers, getUserById, login } = require('../controllers/U
 //   .delete(deleteUserById)
 //   .update(updateUserById)
 
-router.post('/', registerUser);   // POST to `/api/user/`
-router.get('/', getUsers);        // POST to `/api/user/`
+router.post('/signup', registerUser);   // POST to `/api/user/signup`
+router.get('/users', getUsers);        // GET to `/api/user/`
+router.post('/', authMiddleware)
 router.get('/:id', getUserById);  // GET to `/api/user/:id`
 router.post('/login', login)      // POST to `/api/user/login
 

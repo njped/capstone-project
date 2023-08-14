@@ -14,11 +14,11 @@ const authMiddleware = (req, res) => {
   let token = req.cookie.token || req.body.token || req.query.token || req.headers.authorization;
 
   if (!token) {
-    res.status(401).send({ status: 'error', message: 'Unauthorized user' });
+    res.json({ message: 'Unauthorized user' });
   }
 
   try {
-    const { userId } = jwt.verify(token, process.env.SECRET)
+    const { userId } = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET)
     const user = User.findById(userId).select({ password: 0 });
 
     if (user) {

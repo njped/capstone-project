@@ -24,7 +24,7 @@ const registerUser = async (req, res, next) => {
       let message = errorReason.email + ' ' + errorReason.username;
 
       console.error('User already exists', existingUser);
-      return res.status(400).send({status: 'error', message: message.trim()})
+      return res.json({ message: message.trim()})
     }
   
     // register new user
@@ -47,8 +47,7 @@ const registerUser = async (req, res, next) => {
     })
     next();
   } catch (error) {
-    console.error(error)
-    res.status(500).send({status: 'error', message: error})
+    res.json({ message: error})
   }
 };
 
@@ -63,9 +62,7 @@ const getUserById = async (req, res, next) => {
   const { params } = req;
 
   if (!params.id) {
-    return res
-      .status(400)
-      .send({ status: 'error', message: 'User ID required' });
+    return res.json({ message: 'User ID required' });
   }
 
   console.log(params.id)
@@ -78,9 +75,7 @@ const getUserById = async (req, res, next) => {
     });
 
     if (!user) {
-      return res
-        .status(401)
-        .send({ status: 'error', message: 'No user found' });
+      return res.json({ message: 'No user found' });
     }
 
     res.status(201).send({
@@ -91,7 +86,7 @@ const getUserById = async (req, res, next) => {
     next();
   } catch (error) {
     console.error(error);
-    res.status(500).send({ status: 'error', message: error });
+    res.json({ message: error });
   }
 }
 
@@ -99,7 +94,7 @@ const login = async (req, res, next) => {
   const { username, password } = req.body;
 
   if (!username || !password) {
-    return res.status(400).send({status: 'error', message: 'Username and password required'})
+    return res.json({ message: 'Username and password required'})
   }
 
   try {
@@ -110,17 +105,13 @@ const login = async (req, res, next) => {
       });
 
     if (!user) {
-      return res
-        .status(401)
-        .send({ status: 'error', message: 'Invalid credentials' })
+      return res.json({ message: 'Invalid credentials' })
     }
     const passwordCheck = await user.verifyPassword(password);
 
     console.log('verifyPassword', passwordCheck);
     if (!passwordCheck) {
-      return res
-        .status(401)
-        .send({ status: 'error', message: 'Invalid credentials' });
+      return res.json({ message: 'Invalid credentials' });
     }
 
     const token = registerToken(user._id);
@@ -138,7 +129,7 @@ const login = async (req, res, next) => {
     next();
   } catch (error) {
     console.error(error);
-    res.status(500).send({ status: 'error', message: error });
+    res.json({ message: error });
   }
 } 
 
