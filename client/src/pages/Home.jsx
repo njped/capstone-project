@@ -29,9 +29,9 @@ export function Home() {
       );
       const data = await res.json()
       const { status, user } = data;
-      setUsername(user);
+      setUsername(user.username);
       return status
-        ? toast(`Hello ${user}`, {
+        ? toast(`Hello ${user.username}`, {
           position: "top-right",
         })
         : (removeCookie("token"), navigate("/login"));
