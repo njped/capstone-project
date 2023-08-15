@@ -31,14 +31,15 @@ export function Home() {
       );
       const data = await res.json()
       const { status, user } = data;
-      setUsername(user.username);
+      console.log(data);
+      setUsername(`${user.firstName} ${user.lastName}`);
     };
     verifyCookie();
   }, [cookies, navigate, removeCookie]);
-  const Logout = () => {
-    removeCookie("token");
-    navigate("/login");
-  };
+  // const Logout = () => {
+  //   removeCookie("token");
+  //   navigate("/login");
+  // };
 
   return (
     <> 
@@ -52,6 +53,7 @@ export function Home() {
           </div>
           <div id="homePageManage">
             <h1>Home Page</h1>
+            <h2>Welcome {username}</h2>
           </div> 
         </div>
       </div>

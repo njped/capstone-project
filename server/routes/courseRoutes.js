@@ -3,6 +3,6 @@ const { getCourseById, getManyCourseById, getAllCourses} = require('../controlle
 
 router.get('/:id', getCourseById); // GET (api/courses/:id)
 router.get('/:id', getManyCourseById);  // GET (api/courses/:id)
-router.get('/', getAllCourses); // GET (api/coures)
+router.get('/', getAllCourses); // GET (api/courses)
 
 module.exports = router

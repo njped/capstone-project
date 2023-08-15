@@ -10,6 +10,7 @@ const getManyCourseById = async (req, res, next) => {
 
 const getAllCourses = async (req, res) => {
   const courses = await Course.find()
+  console.log(courses);
   res.json({courses})
 }
 
