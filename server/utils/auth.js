@@ -9,9 +9,10 @@ const registerToken = (userId, username, email) => {
   });
 };
 
-const authMiddleware = (req, res) => {
+const authMiddleware = async (req, res) => {
   // allows token to be sent via req.cookie req.body, req.query, or headers
-  let token = req.cookie.token || req.body.token || req.query.token || req.headers.authorization;
+  let token = req.body.token
+
 
   if (!token) {
     res.json({ message: 'Unauthorized user' });
@@ -19,7 +20,9 @@ const authMiddleware = (req, res) => {
 
   try {
     const { userId } = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET)
-    const user = User.findById(userId).select({ password: 0 });
+    console.log(`userId: ${userId}`);
+    const user = await User.findById(userId).select({ password: 0 });
+    console.log(`user: ${user}`)
 
     if (user) {
       return res.status(201).send({ status: 'tokenAuthenticated', user });

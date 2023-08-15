@@ -92,7 +92,7 @@ const getUserById = async (req, res, next) => {
 
 const login = async (req, res, next) => {
   const { username, password } = req.body;
-
+  
   if (!username || !password) {
     return res.json({ message: 'Username and password required'})
   }
