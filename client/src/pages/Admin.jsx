@@ -2,6 +2,7 @@ import React from "react";
 import { NavBar } from './components/NavBar.jsx'
 import { AdminManage } from "./components/AdminManage.jsx";
 import './Admin.css';
+import { AppHeader } from "./components/appHeader.jsx";
 
 export function Admin() {
 
@@ -10,9 +11,14 @@ export function Admin() {
             <div id="adminPageContainer">
                 <div id="adminPageNav">
                     <NavBar/>
-                </div>
-                <div id="adminPageManage">
-                    <AdminManage/>
+                </div> 
+                <div id="adminMainContentContainer">
+                    <div id="adminPageHeaderBar">
+                        <AppHeader/>
+                    </div>
+                    <div id="adminPageManage">
+                        <AdminManage/>
+                    </div>
                 </div>
             </div>
         </>

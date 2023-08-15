@@ -1,0 +1,55 @@
+body, header, div {
+    margin: 0;
+    padding: 0;
+    border: none;
+}
+
+#infoPageContainer {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+}
+    #infoPageNav {
+        background-color: #fff;
+        border-right: 1px solid #DDDDDD;
+    }
+        #navLinks a {
+            border-bottom: 1px solid #DDDDDD;
+            padding: calc(1em + 0.390625vw) 0 0 0;
+            font-size: calc(8px + 0.390625vw);
+        }
+
+        #navLinks a p {
+            padding: 0 calc(.15em + 0.390625vw) calc(1em + 0.390625vw) calc(.15em + 0.390625vw);
+            margin: 0;
+        }
+    #infoMainPageContentContainer {
+        width: 100vw;
+        display: flex;
+        flex-direction: column;
+    }
+        #infoPageHeaderBar {
+            background-color: #fff;
+            border-bottom: 1px solid #DDDDDD;
+        }
+            #appHeaderContainer {
+                display: flex;
+                flex-direction: row;
+                justify-content: end;
+            }
+                .logOutButton {
+                    height: inherit;
+                    border-left: 1px solid #DDDDDD;
+                }
+                    .logOutButton button {
+                        padding: calc(.5vh + 0.390625vw) calc(.5vw + 0.390625vw) calc(.5vh + 0.390625vw) calc(.5vw + 0.390625vw);
+                        background-color: inherit;
+                        border: none;
+                        font-size: calc(8px + 0.390625vw);
+                    }
+        #infoPageManage {
+            display: flex;
+            justify-content: center;
+            margin: 0 auto;
+        }

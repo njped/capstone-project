@@ -5,7 +5,8 @@ body, header, div {
 }
 
 #coursePageContainer {
-    width: 100%;
+    width: 100vw;
+    height: 100vw;
     display: flex;
     flex-direction: row;
 }
@@ -26,6 +27,31 @@ body, header, div {
                 padding: 0 calc(.15em + 0.390625vw) calc(1em + 0.390625vw) calc(.15em + 0.390625vw);
                 margin: 0;
             }
+    #coursesMainContentContainer {
+        width: 100vw;
+        display: flex;
+        flex-direction: column;
+    }
+        #coursesPageHeaderBar {
+            background-color: #fff;
+            border-bottom: 1px solid #DDDDDD;
+        }
+            #appHeaderContainer {
+                display: flex;
+                flex-direction: row;
+                justify-content: end;
+            }  
+                .logOutButton {
+                    height: inherit;
+                    border-left: 1px solid #DDDDDD;
+                }
+                    .logOutButton button {
+                        padding: calc(.5vh + 0.390625vw) calc(.5vw + 0.390625vw) calc(.5vh + 0.390625vw) calc(.5vw + 0.390625vw);
+                        background-color: inherit;
+                        border: none;
+                        font-size: calc(8px + 0.390625vw);
+                    }
+
     #coursesPageManage {
         display: flex;
         justify-content: center;

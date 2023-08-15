@@ -1,16 +1,27 @@
 import React from "react";
-import '../App.css';
+import './UserInfo.css';
 
 import { NavBar } from './components/NavBar.jsx'
 import UserDetails from "./components/UserDetails.jsx";
+import { AppHeader } from "./components/appHeader";
 
 export function UserInfo() {
 
     return (
-        <>
-            <NavBar/>
-            <h1>User Information Page</h1>
-            <UserDetails/>
+        <> 
+            <div id="infoPageContainer">
+                <div id="infoPageNav">
+                    <NavBar/>
+                </div>
+                <div id="infoMainPageContentContainer">
+                    <div id="infoPageHeaderBar">
+                        <AppHeader/>
+                    </div>
+                    <div id="infoPageManage">
+                        <UserDetails/>
+                    </div>
+                </div>
+            </div>
         </>
     )
 };
