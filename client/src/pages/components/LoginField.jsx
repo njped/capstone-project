@@ -35,27 +35,31 @@ export default function LoginField() {
     async function handleSubmit(e) {
         e.preventDefault();
         try {
-            const { data } = await axios.post(
-                "http://localhost:5050/api/user/login",
+            const res = await fetch("http://localhost:5050/api/user/login",
                 {
-                    ...inputValue,
+                    method: "POST",
+                    body: JSON.stringify(inputValue),
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    credentials: "include"
                 },
-                { withCredentials: true }
             );
-            console.log(data);
-            const { status, message } = data;
+            console.log(res)
+            const data = await res.json()
+            const {status, message} = data
             if (status === 'success') {
                 if(data.user.isAdmin === true){
                     handleSuccess(message)
                     setTimeout(() => {
                         navigate("/admin");
-                    }, 2000);
+                    }, 1000);
                 }
                 else {
                     handleSuccess(message)
                     setTimeout(() => {
                         navigate("/home");
-                    }, 2000);
+                    }, 1000);
                 }
 
             } else {

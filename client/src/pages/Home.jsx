@@ -17,16 +17,23 @@ export function Home() {
       if (!cookies.token) {
         navigate("/login");
       }
-      const { data } = await axios.post(
-        "http://localhost:5050/api/user/",
-        { withCredentials: true }
+      const res = await fetch("http://localhost:5050/api/user/", {
+        method: "POST",
+        body: JSON.stringify({token: cookies.token}),
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": "Bearer " + cookies.token
+        },
+        credentials: "include"
+      }
       );
+      const data = await res.json()
       const { status, user } = data;
       setUsername(user);
       return status
         ? toast(`Hello ${user}`, {
-            position: "top-right",
-          })
+          position: "top-right",
+        })
         : (removeCookie("token"), navigate("/login"));
     };
     verifyCookie();
@@ -38,14 +45,14 @@ export function Home() {
 
   return (
     <>
-      <NavBar/>
+      <NavBar />
       <h1>Home Page</h1>
       <h4>
-          {" "}
-          Welcome <span>{username}</span>
+        {" "}
+        Welcome <span>{username}</span>
       </h4>
-        <button onClick={Logout}>LOGOUT</button>
-      
+      <button onClick={Logout}>LOGOUT</button>
+
     </>
   )
 }
