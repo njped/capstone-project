@@ -41,11 +41,13 @@ export default class UserDetails extends Component {
     render() {
         return (
             <>
-                <div>
-                    Name<h1>{ this.state.userData.firstName }</h1>
-                    Email<h1>{ this.state.userData.email }</h1>
-                </div>
-                <button onClick={this.logOut}>Logout</button>
+                <div id="infoContentContainer">
+                    <h1>User Information</h1>
+                    <div id="infoUserSettings">
+                        Name<h1>{ this.state.userData.firstName }</h1>
+                        Email<h1>{ this.state.userData.email }</h1>
+                    </div>
+                </div> 
             </>
         )
     };

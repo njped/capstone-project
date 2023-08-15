@@ -1,15 +1,25 @@
 import React from "react"
 import { NavBar } from './components/NavBar.jsx'
-import '../App.css';
+import './Home.css';
+import { AppHeader } from "./components/appHeader.jsx";
 
 export function Home() {
 
-
-
   return (
-    <>
-      <NavBar/>
-      <h1>Home Page</h1>
+    <> 
+      <div id="homePageContainer">
+        <div id="homePageNav">
+          <NavBar/>
+        </div>
+        <div id="homeMainContentContainer">
+          <div id="homePageHeaderBar">
+            <AppHeader/>
+          </div>
+          <div id="homePageManage">
+            <h1>Home Page</h1>
+          </div> 
+        </div>
+      </div>
     </>
   )
 }

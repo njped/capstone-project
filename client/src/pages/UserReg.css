@@ -1,9 +1,13 @@
 #regPageContainer {
-    width: auto;
-    height: auto;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #regFormContainer {
+    height: min-content;
     background-color: #FFFFFF;
     padding: 0em 1.5em 1.5em 1.5em;
     border: 1px solid #DDDDDD;
