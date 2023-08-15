@@ -160,7 +160,7 @@ export default class RegField extends Component {
         // } else {
         //     alert(`Something went wrong with the username and email verification: ಠ_ಠ`)
         // };
-        fetch('http://localhost:3001/user-reg', {
+        fetch('http://localhost:5050/user-reg', {
             method: "POST",
             crossDomain: true,
             headers: {
@@ -210,7 +210,7 @@ export default class RegField extends Component {
                             <input
                                 type="text" 
                                 id="firstNameInput"
-                                placeholder="First Nane"
+                                placeholder="First Name"
                                 onChange={(e) => this.setState({ firstNameInput: e.target.value })}
                             />
 

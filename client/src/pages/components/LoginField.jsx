@@ -27,7 +27,7 @@ export default class LoginField extends Component {
         const { userNameInput, passWordInput, } = this.state
         console.log(userNameInput, passWordInput)
 
-        fetch('http://localhost:3001/login', {
+        fetch('http://localhost:5050/login', {
             method: "POST",
             crossDomain: true,
             headers: {
