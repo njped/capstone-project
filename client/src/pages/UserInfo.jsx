@@ -3,7 +3,7 @@ import './UserInfo.css';
 
 import { NavBar } from './components/NavBar.jsx'
 import UserDetails from "./components/UserDetails.jsx";
-import { AppHeader } from "./components/appHeader";
+import { AppHeader } from "./components/AppHeader";
 
 export function UserInfo() {
 

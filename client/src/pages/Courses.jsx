@@ -2,7 +2,7 @@ import React from "react";
 import { NavBar } from './components/NavBar.jsx'
 import { CourseManage } from "./components/CourseManage.jsx";
 import './Courses.css';
-import { AppHeader } from "./components/appHeader.jsx";
+import { AppHeader } from "./components/AppHeader.jsx";
 
 export function Courses() {
 

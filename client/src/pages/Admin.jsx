@@ -2,7 +2,7 @@ import React from "react";
 import { NavBar } from './components/NavBar.jsx'
 import { AdminManage } from "./components/AdminManage.jsx";
 import './Admin.css';
-import { AppHeader } from "./components/appHeader.jsx";
+import { AppHeader } from "./components/AppHeader.jsx";
 
 export function Admin() {
 
