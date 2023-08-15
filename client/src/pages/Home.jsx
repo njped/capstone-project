@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import { useCookies } from "react-cookie";
 import axios from "axios";
 import { toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 import '../App.css';
 
 export function Home() {
@@ -30,11 +31,6 @@ export function Home() {
       const data = await res.json()
       const { status, user } = data;
       setUsername(user.username);
-      return status
-        ? toast(`Hello ${user.username}`, {
-          position: "top-right",
-        })
-        : (removeCookie("token"), navigate("/login"));
     };
     verifyCookie();
   }, [cookies, navigate, removeCookie]);

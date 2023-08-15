@@ -5,7 +5,7 @@ const getCourseById = async (req, res, next) => {
 }
 
 const getManyCourseById = async (req, res, next) => {
-
+  
 }
 
 const getAllCourses = async (req, res, next) => {
