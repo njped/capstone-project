@@ -2,290 +2,232 @@ import React, { Component } from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
-
+import axios from 'axios'
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye } from '@fortawesome/free-solid-svg-icons';
 import { faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 
 
+export default function RegField() {
+    const [passwordType, setPasswordType] = useState('password')
+    const navigate = useNavigate()
+    const [inputValue, setInputValue] = useState({
+        firstName: "",
+        lastName: "",
+        email: "",
+        phone: "",
+        address: "",
+        username: "",
+        password: "",
+        reEnterPassword: "",
+    })
+    const { firstName, lastName, email, phone, address, username, password, reEnterPassword } = inputValue
 
-export default class RegField extends Component {
-    constructor(props){
-        super(props)
-        this.state = {
-            firstNameInput: "", 
-            lastNameInput: "", 
-            emailInput: "", 
-            phoneNumberInput: "", 
-            addressInput: "", 
-            userNameInput: "", 
-            passWordInput: "", 
-            passWordReEnterInput: "", 
-            passwordType: "password"
-        };
-        this.handleClick = this.handleClick.bind(this)
-        this.handleSubmit = this.handleSubmit.bind(this)
+    function handleOnChange(e) {
+        const { name, value } = e.target
+        setInputValue({ ...inputValue, [name]: value })
     }
-    // const [ firstName, setFirstName ] = useState('');
-    // const [ lastName, setLastName ] = useState('');
-    // const [ email, setEmail ] = useState('');
-    // const [ phone, setPhone ] = useState('');
-    // const [ address, setAddress ] = useState('');
-    // const [ username, setUsername ] = useState('');
-    // const [ password, setPassword ] = useState('');
-    // const [ reEnteredPassword, setReEnteredPassword ] = useState('');
-    // const [ passwordType, setPasswordType ] = useState('password')
-    // const navigateTo = useNavigate();
-    
 
-    // let storageCondition = localStorage.getItem('Existing-Accounts') === null;
-    // let userAccounts = storageCondition? [] : JSON.parse(localStorage.getItem('Existing-Accounts'));
+    const handleError = (err) =>
+        toast.error(err, {
+            position: "bottom-left",
+        });
+    const handleSuccess = (msg) =>
+        toast.success(msg, {
+            position: "bottom-right",
+        });
 
-    // resetForm() {
-    //     console.log('--Form Reset--');
-
-    //     setFirstName('');
-    //     setLastName('');
-    //     setEmail('');
-    //     setPhone('');
-    //     setAddress('');
-    //     setUsername('');
-    //     setPassword('');
-    //     setReEnteredPassword('');
-    //     setPasswordType('password');
-
-    // };
-
-    handleClick(e) {
+    function handleClick(e) {
         e.preventDefault();
 
-        if(this.state.passwordType === 'password') {
-            this.setState({passwordType: 'text'});
-            // setPasswordType('text');
+        if (passwordType === 'password') {
+            setPasswordType('text');
         } else {
-            this.setState({passwordType: 'password'});
-            // setPasswordType('password');
+            setPasswordType('password');
         };
     };
-    handleSubmit(e) {
+    async function handleSubmit(e) {
         e.preventDefault()
+        
+        // Checking email is typed
+        if (email === null || email === "") {
+            return toast.error('Email is required', {
+                position: "bottom-left",
+            });
+        }
+        
+        // Checking if username is typed
+        if (username === null || username === "") {
+            return toast.error('Username is required', {
+                position: "bottom-left",
+            });
+        }
 
-        // const { firstNameInput }  = setFirstName()
-        // const { lastNameInput } = setLastName()
-        // const { emailInput } = setEmail()
-        // const { phoneNumberInput } = setPhone()
-        // const { addressInput } = setAddress()
-        // const { userNameInput } = setUsername()
-        // const { passWordInput } = setPassword()
-        // const { passWordReEnterInput } = setReEnteredPassword()
+        // Checking to see if there is a password
+        if (password === null || password === "") {
+            return toast.error('Password is required', {
+                position: "bottom-left",
+            });
+        }
+        if (reEnterPassword === null || reEnterPassword === "") {
+            return toast.error('Re-Enter Password is required', {
+                position: "bottom-left",
+            });
+        }
+        
+        // Checking Passwords are the same
+        if (password !== reEnterPassword) {
+            return toast.error('Passwords are not the same', {
+                position: "bottom-left",
+            });
+        }
+        
 
-        const {firstNameInput, 
-            lastNameInput, 
-            emailInput, 
-            phoneNumberInput, 
-            addressInput, userNameInput, 
-            passWordInput, 
-            passWordReEnterInput,
-        } = this.state
-
-        // localStorage.setItem('Existing-Accounts', JSON.stringify())
-
-        // function searchUserNames(username) {
-        //     return userAccounts.some(element => {
-        //         console.log(element);
-        //         return element.UserName === username;
-        //     });
-        // };
-        // function searchUserEmails(email) {
-        //     return userAccounts.some(element => {
-        //         console.log(element);
-        //         return element.Email === email;
-        //     });
-        // };
-
-
-        // if( searchUserNames(username) === false && searchUserEmails(email) === false ) {
-
-            
-        //     //Checks that both passwords match
-        //     if( password === reEnteredPassword ) {
-        //         const newUser = {
-        //             FirstName: firstName,
-        //             LastName: lastName,
-        //             ClassList: [],
-        //             Email: email,
-        //             PhoneNumber: phone,
-        //             Address: address,
-        //             UserName: username,
-        //             PassWord: password,
-        //             isAdmin: false,
-        //             UUID: uuidv4(),
-        //             createDate: Date(),
-        //         };
-
-        //         if( localStorage.getItem('Existing-Accounts') === null) {
-
-        //             let userArray = [];
-        //             userArray.push(newUser)
-        //             localStorage.setItem('Existing-Accounts', JSON.stringify(userArray));
-
-        //             resetForm();
-        //             navigateTo('/')
-
-
-        //         } else if ( localStorage.getItem('Existing-Accounts') !== null) {
-
-        //             // localStorage.removeItem('Existing-Accounts')
-        //             userAccounts.push(newUser);
-        //             localStorage.setItem('Existing-Accounts', JSON.stringify(userAccounts));
-
-        //             resetForm();
-        //             navigateTo('/')
-
-        //         } else (
-        //             alert('LocalStorge Error')
-        //         );
-        //     } else if( password !== reEnteredPassword ) {
-        //         alert(`The passwords you entered do not match`)
-        //     } else {
-        //         alert(`Something went wrong with the password verification: ʕ •ᴥ•ʔ`)
-        //     };
-
-        // } else if(searchUserNames(username) === true && searchUserEmails(email) === true ) {
-        //     alert('A user with this information already exists')
-        // } else if( searchUserNames(username) === true ) {
-        //     alert(`Sorry ${username} is unavaiable`)
-        // } else if( searchUserEmails(email) === true ) {
-        //     alert(`${email} is already in use`)
-        // } else {
-        //     alert(`Something went wrong with the username and email verification: ಠ_ಠ`)
-        // };
-        fetch('http://localhost:5050/user-reg', {
-            method: "POST",
-            crossDomain: true,
-            headers: {
-                "Content-Type": "application/json",
-                Accept: "application/json",
-                "Access-Control-Allow-Origin": "*",
-            },
-            body: JSON.stringify({
-                firstName: firstNameInput, 
-                lastName: lastNameInput, 
-                email: emailInput, 
-                phone: phoneNumberInput,
-                address: addressInput,
-                username: userNameInput,
-                password: passWordInput,
-                reEnterPassword: passWordReEnterInput
-            }),
-        })
-        .then((response) => {
-            if (response.ok) {
-                console.log('Success')
+        try {
+            const { data } = await axios.post(
+                "http://localhost:5050/api/user/signup",
+                {
+                    ...inputValue
+                },
+                { withCredentials: true }
+            );
+            console.log(data)
+            const { status, message } = data;
+            if (status === 'success') {
+                handleSuccess(message)
+                setTimeout(() => {
+                    navigate("/login");
+                }, 1000);
+            } else {
+                handleError(message)
             }
-            else {
-                console.log("Oopsies")
-            }
-            return response.json()})
-        .then((data) => {
-            console.log(data, "userRegister")
-            if(data.status === 'ok') {
-                window.location.href = 'login'
-            }
-        })
+        } catch (error) {
+            console.log(error);
+        }
+        setInputValue({
+            ...inputValue,
+            firstName: "",
+            lastName: "",
+            email: "",
+            phone: "",
+            address: "",
+            username: "",
+            password: "",
+            reEnterPassword: "",
+        });
+
     };
-    render() {
 
-    
-        return (
+    return (
         <>
             <div id="regFormContainer">
                 <div id="regForm">
 
-                    <form onSubmit={this.handleSubmit}>
+                    <form onSubmit={handleSubmit}>
                         <div className="regFormHeader">
                             <h1>Registration</h1>
                         </div>
                         <div className="regFormInputs">
+                            <label htmlFor="firstName"></label>
                             <input
-                                type="text" 
+                                type="text"
                                 id="firstNameInput"
                                 placeholder="First Name"
-                                onChange={(e) => this.setState({ firstNameInput: e.target.value })}
+                                value={firstName}
+                                name="firstName"
+                                onChange={handleOnChange}
                             />
 
-
+                            <label htmlFor="lastName"></label>
                             <input
-                                type="text" 
+                                type="text"
                                 id="lastNameInput"
                                 placeholder="Last Name"
-                                onChange={(e) => this.setState({ lastNameInput: e.target.value })}
+                                value={lastName}
+                                name="lastName"
+                                onChange={handleOnChange}
                             />
 
-
+                            <label htmlFor="email"></label>
                             <input
-                                type="text" 
+                                type="email"
                                 id="emailInput"
                                 placeholder="Email"
-                                onChange={(e) => this.setState({ emailInput: e.target.value })}
+                                // required={true}
+                                value={email}
+                                name="email"
+                                onChange={handleOnChange}
                             />
 
-
+                            <label htmlFor="phone"></label>
                             <input
-                                type="text" 
+                                type="text"
                                 id="phoneNumberInput"
                                 pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
                                 placeholder="Ex: 801-000-000"
-                                onChange={(e) => this.setState({ phoneNumberInput: e.target.value })}
+                                value={phone}
+                                name="phone"
+                                onChange={handleOnChange}
                             />
 
-
+                            <label htmlFor="address"></label>
                             <input
-                                type="text" 
+                                type="text"
                                 id="addressInput"
                                 placeholder="Address"
-                                onChange={(e) => this.setState({ addressInput: e.target.value })}
+                                value={address}
+                                name="address"
+                                onChange={handleOnChange}
                             />
 
-
+                            <label htmlFor="username"></label>
                             <input
-                                type="text" 
+                                type="text"
                                 id="userNameInput"
                                 placeholder="Username"
-                                required={true}
-                                onChange={(e) => this.setState({ userNameInput: e.target.value })}
+                                // required={true}
+                                value={username}
+                                name="username"
+                                onChange={handleOnChange}
                             />
 
-
+                            <label htmlFor="password"></label>
                             <input
-                                type={this.state.passwordType} 
+                                type={passwordType}
                                 id="passWordInput"
                                 placeholder="Password"
-                                required={true}
-                                onChange={(e) => this.setState({ passWordInput: e.target.value })}
+                                // required={true}
+                                value={password}
+                                name="password"
+                                onChange={handleOnChange}
                             />
 
-
+                            <label htmlFor="reEnterPassword"></label>
                             <input
-                                type={this.state.passwordType} 
+                                type={passwordType}
                                 id="passWordReEnterInput"
                                 placeholder="Reenter Password"
-                                required={true}
-                                onChange={(e) => this.setState({ passWordReEnterInput: e.target.value })}
+                                // required={true}
+                                value={reEnterPassword}
+                                name="reEnterPassword"
+                                onChange={handleOnChange}
                             />
                             <div className="regFormButtons">
-                                <button type="Submit">Create User</button>
-                                <button className='togglePasswordVisability' onClick={this.handleClick}>
-                                    { this.state.passwordType==="password"? <FontAwesomeIcon icon={faEyeSlash} /> : <FontAwesomeIcon icon={faEye} /> }
+                                <button type="submit">Create User</button>
+                                <button className='togglePasswordVisability' onClick={handleClick}>
+                                    {passwordType === "password" ? <FontAwesomeIcon icon={faEyeSlash} /> : <FontAwesomeIcon icon={faEye} />}
                                 </button>
                             </div>
                         </div>
                         <div className="regFormLink">
                             <Link to='/'>User Login</Link>
-                        </div>           
+                        </div>
                     </form>
                 </div>
-            </div>  
+                <ToastContainer />
+            </div>
         </>
-    )}
+    )
 }

@@ -10,7 +10,6 @@ import { Login } from './pages/Login.jsx'
 import { useState, useEffect } from 'react'
 
 function App() {
-  const isLoggedIn = window.localStorage.getItem("loggedIn")
   // const [count, setCount] = useState(0);
   // const [data, setData] = useState(null);
 
@@ -23,7 +22,7 @@ function App() {
   return (
     <>
       <Routes>
-        <Route exact path='/' element={isLoggedIn === "true" ? <UserInfo /> : <Login />} />
+        <Route exact path='/' element={<Login />} />
         <Route path='login' element={<Login />} />
         <Route path='home' element={<Home />} />
         <Route path='admin' element={<Admin />} />

@@ -1,16 +1,17 @@
 const mongoose = require('mongoose');
+require('dotenv').config();
 
-// need to change the DB_URL to our actual database url
 const dbURL = process.env.DB_URL || 'mongodb://localhost/capstone'
+
 mongoose
   .connect(dbURL, {
-    useNewUrlParser:true
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
   })
   .then(() => {
-    console.log("Connected to the database")
+    console.log('MongoDB connected successfully')
     // console.log(`DB URL: ${dbURL}`)
   })
-  .catch((e) => {
-    console.log("Connection with database failed")
-    console.log(e)
-  });
+  .catch((err) => console.error(err));
+
+module.exports = mongoose.connection
