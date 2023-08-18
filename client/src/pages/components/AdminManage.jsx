@@ -4,6 +4,14 @@ import React, { useEffect } from "react";
 
 export const AdminManage = () => {
 
+    const getUser = async () => {
+        let response = await fetch('http://localhost:5050/api/user/users');
+        console.log(response);
+        let userApi = await response.json();
+
+        console.log(userApi);
+    };
+
     let storageCondition = localStorage.getItem('Existing-Accounts') === null;
     let userAccounts = storageCondition? [] : JSON.parse(localStorage.getItem('Existing-Accounts'));
 
@@ -233,7 +241,7 @@ export const AdminManage = () => {
     });
     
     useEffect(() => {
-        RenderUserCards();
+        getUser()
     }, []);
 
     return (

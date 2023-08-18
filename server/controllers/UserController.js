@@ -54,7 +54,7 @@ const registerUser = async (req, res, next) => {
 const getUsers = async (req, res, next) => {
   const users = await User.find().select({password: 0})
   res.status(200).send({status: 'allUsers', users})
-  next();
+  // next();
 }
 
 // Find the user by the user._id
